@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes - StudentMind Connect</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f7fc; color: #1e1e2f; min-height: 100vh; display: flex; flex-direction: column; }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: #ffffff; border-bottom: 1px solid #e2e8f0; width: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .logo-container { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .logo-container img { width: 45px; height: 45px; object-fit: contain; }
+        .logo-text { font-size: 20px; font-weight: bold; color: #0b132b; }
+        .logo-text span { color: #3a86ff; display: block; }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #4a5568; font-weight: 500; font-size: 15px; }
+        .nav-links a.active { color: #2563eb; font-weight: 600; }
+        .btn-register { background: #2563eb; color: white; padding: 10px 22px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 14px; }
+
+        .main-content { padding: 0 50px 60px; margin-top: -35px !important; position: relative; flex-grow: 1; max-width: 1400px; margin: 0 auto; width: 100%; }
+        .header-title { text-align: center; margin-bottom: 40px; }
+        .header-title h1 { font-size: 34px; color: #0f172a; font-weight: 800; margin-bottom: 10px; }
+        .header-title p { color: #64748b; font-size: 16px; }
+
+        /* Grid de 4 columnas idéntico a tu diagrama */
+        .plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .plan-column { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+
+        /* Cabeceras de columnas basadas en los colores de tu imagen */
+        .plan-header { padding: 20px; color: white; text-align: center; }
+        .plan-header h3 { font-size: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
+        .plan-header span { font-size: 13px; opacity: 0.9; font-weight: 500; }
+
+        .col-free .plan-header { background: #2e7d32; }
+        .col-smart .plan-header { background: #1565c0; }
+        .col-pro .plan-header { background: #6a1b9a; }
+        .col-elite .plan-header { background: #c62828; }
+
+        .plan-stage { background: #f8fafc; padding: 10px; text-align: center; font-size: 12px; font-weight: 700; color: #475569; border-bottom: 1px solid #e2e8f0; }
+        .plan-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+        
+        .objective-box { background: #f1f5f9; padding: 10px; border-radius: 8px; font-size: 12px; color: #334155; line-height: 1.4; }
+        .objective-box strong { display: block; color: #0f172a; margin-bottom: 2px; }
+
+        .features-section h4 { font-size: 13px; text-transform: uppercase; color: #64748b; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+        .features-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .features-list li { font-size: 12px; color: #334155; line-height: 1.3; display: flex; align-items: flex-start; gap: 6px; }
+
+        .pricing-model { border-top: 1px solid #e2e8f0; padding-top: 15px; text-align: center; }
+        .pricing-model span { font-size: 11px; text-transform: uppercase; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px; }
+        .pricing-model p { font-size: 15px; font-weight: 800; color: #0f172a; }
+
+        @media (max-width: 1100px) { .plans-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px) { .plans-grid { grid-template-columns: 1fr; } }
+    </style>
+    <link rel="icon" href="LOGO%20TECHNICAL.jpg">
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="presentacion.html" class="logo-container" title="Ir a la página principal">
+            <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect">
+            <div class="logo-text">StudentMind <span>Connect</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Test</a>
+            <a href="blog.html">Blog</a>
+            <a href="webinar.html">Webinar</a>
+            <a href="planes.html" class="active">Planes</a>
+        </div>
+        <a href="planes.html" class="btn-register">Regístrate Gratis</a>
+    </nav>
+
+    <header class="smc-page-hero">
+        <span class="smc-chip">Elige tu ruta</span>
+        <h1>Evolución de Ecosistema y <span class="smc-grad-text">Planes</span></h1>
+        <p>Conoce las etapas de crecimiento y funcionalidades clave de StudentMind Connect.</p>
+    </header>
+
+    <div class="main-content">
+
+        <div class="plans-grid">
+            <!-- FREE -->
+            <div class="plan-column col-free">
+                <div class="plan-header">
+                    <h3>Free</h3>
+                    <span>"Descubre tu Ruta"</span>
+                </div>
+                <div class="plan-stage">MVP (Validación)</div>
+                <div class="plan-body">
+                    <div class="objective-box"><strong>Objetivo:</strong> Captar estudiantes universitarios</div>
+                    <div class="features-section">
+                        <h4>Funcionalidades clave</h4>
+                        <ul class="features-list">
+                            <li>✔️ Registro de estudiante y materias</li>
+                            <li>✔️ Perfil académico y horarios libres</li>
+                            <li>✔️ Diagnóstico inicial de vacíos temáticos</li>
+                            <li>✔️ Semáforo básico de dominio</li>
+                            <li>✔️ Planificador de estudio semanal básico</li>
+                            <li>✔️ Guías y resúmenes clave esenciales</li>
+                            <li>✔️ Tutor de estudio IA & ChatboxIA</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-model">
+                        <span>Modelo de ingresos</span>
+                        <p>Freemium gratis (adquisición)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMART -->
+            <div class="plan-column col-smart">
+                <div class="plan-header">
+                    <h3>Smart</h3>
+                    <span>"Impulsa tu Progreso"</span>
+                </div>
+                <div class="plan-stage">Producto Inicial (PMF)</div>
+                <div class="plan-body">
+                    <div class="objective-box"><strong>Objetivo:</strong> Generar habitos de estudio constante y retención de usuarios</div>
+                    <div class="features-section">
+                        <h4>Funcionalidades clave</h4>
+                        <ul class="features-list">
+                            <li>✔️ Panel de progreso académico inteligente</li>
+                            <li>✔️ Copiloto académico con IA</li>
+                            <li>✔️ Planificador adaptativo de estudio</li>
+                            <li>✔️ Priorización de temas débiles</li>
+                            <li>✔️ Recomendaciones según desempeño</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-model">
+                        <span>Modelo de ingresos</span>
+                        <p>Suscripción baja $3.49 / mes + publicidad</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRO -->
+            <div class="plan-column col-pro">
+                <div class="plan-header">
+                    <h3>Pro</h3>
+                    <span>"Crece en Comunidad"</span>
+                </div>
+                <div class="plan-stage">Plataforma en Crecimiento</div>
+                <div class="plan-body">
+                    <div class="objective-box"><strong>Objetivo:</strong> Monetización y activación del ecosistema</div>
+                    <div class="features-section">
+                        <h4>Funcionalidades clave</h4>
+                        <ul class="features-list">
+                            <li>✔️ Radar de conocimiento por tema</li>
+                            <li>✔️ Ruta de aprendizaje personalizada</li>
+                            <li>✔️ Gamificación: metas, retos y logros</li>
+                            <li>✔️ Comunidad colaborativa P2P</li>
+                            <li>✔️ Recomendación del siguiente paso</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-model">
+                        <span>Modelo de ingresos</span>
+                        <p>Suscripción media $8.49 / mes + publicidad + comisión por ventas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ELITE -->
+            <div class="plan-column col-elite">
+                <div class="plan-header">
+                    <h3>Elite</h3>
+                    <span>"Tu Ecosistema Inteligente"</span>
+                </div>
+                <div class="plan-stage">Ecosistema Inteligente</div>
+                <div class="plan-body">
+                    <div class="objective-box"><strong>Objetivo:</strong> Generar habitos de estudio constante y retención de usuarios</div>
+                    <div class="features-section">
+                        <h4>Funcionalidades clave</h4>
+                        <ul class="features-list">
+                            <li>✔️ Ecosistema integral con IA</li>
+                            <li>✔️ Predicción de sobrecarga y fatiga</li>
+                            <li>✔️ Recomendaciones preventivas</li>
+                            <li>✔️ Integración con campus y calendarios</li>
+                            <li>✔️ Analítica integral de rendimiento</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-model">
+                        <span>Modelo de ingresos</span>
+                        <p>Suscripción alta $15.49 / mes + publicidad + comisión por ventas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="smc-footer-site">
+        <a href="presentacion.html" class="smc-footer-brand">
+            <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect">
+            <div><strong>StudentMind Connect</strong><small>Tu aliado académico para tu éxito</small></div>
+        </a>
+        <div class="smc-social" aria-label="Síguenos en redes sociales">
+            <a href="https://www.youtube.com/@StudentMindConnect" target="_blank" rel="noopener" class="smc-yt" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg></a>
+            <a href="https://www.tiktok.com/@studentmindconnect" target="_blank" rel="noopener" class="smc-tt" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            <a href="https://www.instagram.com/studentmindconnect/" target="_blank" rel="noopener" class="smc-ig" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595855100485&amp;locale=es_LA" target="_blank" rel="noopener" class="smc-fb" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+        </div>
+        <p>© 2026 StudentMind Connect · Todos los derechos reservados</p>
+    </footer>
+
+    <script src="chat.js"></script>
+</body>
+</html>

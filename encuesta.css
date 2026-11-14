@@ -1,0 +1,182 @@
+/* =========================================================
+   StudentMind Connect - Estilos del Test Diagnóstico (5 etapas + resultados)
+   Usa la misma paleta de theme.css: azul marino, cian, índigo y rosa.
+   ========================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { color: #1e1e2f; min-height: 100vh; display: flex; flex-direction: column; }
+.navbar { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+
+/* ---------- Zona principal con fondo oscuro ---------- */
+.sv-stage {
+    position: relative; overflow: hidden; flex-grow: 1;
+    padding: 50px 24px 70px;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(56,189,248,.30), transparent 42%),
+        radial-gradient(circle at 88% 82%, rgba(244,63,94,.28), transparent 42%),
+        linear-gradient(135deg, #0b1120, #111a33 60%, #1e1b4b);
+    display: flex; flex-direction: column; align-items: center;
+}
+.sv-stage::before, .sv-stage::after {
+    content: ''; position: absolute; border-radius: 50%; filter: blur(60px); opacity: .35; pointer-events: none;
+}
+.sv-stage::before { width: 320px; height: 320px; background: #38bdf8; top: -120px; right: 8%; }
+.sv-stage::after  { width: 280px; height: 280px; background: #f43f5e; bottom: -120px; left: 6%; }
+
+/* ---------- Cabecera: título + stepper ---------- */
+.sv-head { position: relative; z-index: 2; text-align: center; color: #fff; margin-bottom: 30px; width: 100%; max-width: 760px; }
+.sv-head h1 { font-size: 34px; font-weight: 900; letter-spacing: -.5px; margin-bottom: 8px; }
+.sv-head p { color: #cbd5e1; font-size: 15px; }
+
+.sv-stepper { display: flex; align-items: flex-start; justify-content: center; margin-top: 28px; }
+.sv-step { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 96px; text-decoration: none; }
+.sv-step-dot {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; color: #94a3b8;
+    background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.18);
+    transition: transform .25s;
+}
+.sv-step-label { font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: #64748b; }
+.sv-step.done .sv-step-dot { color: #fff; background: rgba(56,189,248,.18); border-color: #38bdf8; }
+.sv-step.done .sv-step-label { color: #7dd3fc; }
+.sv-step.done:hover .sv-step-dot { transform: scale(1.08); }
+.sv-step.current .sv-step-dot {
+    color: #fff; border-color: transparent; background: var(--smc-grad);
+    box-shadow: 0 0 0 4px rgba(99,102,241,.25), 0 0 22px rgba(56,189,248,.6);
+    transform: scale(1.12);
+}
+.sv-step.current .sv-step-label { color: #fff; }
+.sv-step-line { flex: 1; min-width: 18px; max-width: 60px; height: 2px; margin-top: 20px; background: rgba(255,255,255,.15); border-radius: 2px; }
+.sv-step-line.done { background: linear-gradient(90deg, #38bdf8, #6366f1); }
+
+/* ---------- Tarjeta del test ---------- */
+.sv-card {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 640px;
+    background: #fff; border-radius: 28px;
+    padding: 78px 44px 36px;
+    margin-top: 58px;
+    box-shadow: 0 30px 70px rgba(2,6,23,.55), 0 0 0 1px rgba(255,255,255,.12);
+}
+.sv-card::before { content: ''; position: absolute; top: 0; left: 28px; right: 28px; height: 4px; border-radius: 0 0 4px 4px; background: var(--smc-grad); }
+
+/* Logo destacado sobre la tarjeta */
+.sv-logo {
+    position: absolute; top: -62px; left: 50%; transform: translateX(-50%);
+    width: 124px; height: 124px; display: flex; align-items: center; justify-content: center;
+}
+.sv-logo-ring { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, #38bdf8, #6366f1, #f43f5e, #38bdf8); animation: svSpin 8s linear infinite; }
+.sv-logo-ring::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: #fff; }
+.sv-logo img {
+    position: relative; z-index: 2; width: 108px; height: 108px; border-radius: 50%; object-fit: cover;
+    box-shadow: 0 0 30px rgba(56,189,248,.45), 0 0 60px rgba(244,63,94,.2);
+}
+@keyframes svSpin { to { transform: rotate(360deg); } }
+
+.sv-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.sv-meta-stage { background: var(--smc-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sv-meta-count { color: #94a3b8; }
+.sv-progress { height: 8px; background: #eef2ff; border-radius: 999px; overflow: hidden; margin-bottom: 28px; }
+.sv-progress-bar { height: 100%; background: var(--smc-grad); border-radius: 999px; transition: width .45s ease; }
+
+/* ---------- Contenido de cada paso ---------- */
+.sv-content { min-height: 240px; animation: svIn .35s ease-out; }
+@keyframes svIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+.sv-content h1 { font-size: 28px; font-weight: 900; color: #0f172a; line-height: 1.2; margin-bottom: 12px; letter-spacing: -.3px; }
+.sv-content h2 { font-size: 22px; font-weight: 800; color: #0f172a; line-height: 1.3; margin-bottom: 6px; }
+.sv-content > p, .sv-lead { color: #475569; font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
+.sv-hint { font-size: 13px; color: #6366f1; font-weight: 600; margin-bottom: 16px; }
+.sv-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.sv-tag { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 999px; color: #4338ca; background: var(--smc-grad-soft); border: 1px solid rgba(99,102,241,.18); }
+
+.sv-note { padding: 14px 16px; border-radius: 16px; font-size: 13px; line-height: 1.55; color: #312e81; background: var(--smc-grad-soft); border: 1px solid rgba(99,102,241,.18); }
+.sv-note.ok   { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
+.sv-note.warn { background: #fffbeb; border-color: #fde68a; color: #92400e; }
+.sv-stack { display: flex; flex-direction: column; gap: 10px; }
+.sv-stack.sm { gap: 8px; }
+
+/* Opciones (radio / checkbox) */
+.sv-options { display: flex; flex-direction: column; gap: 10px; }
+.sv-options.grid { display: grid; grid-template-columns: 1fr 1fr; }
+.opt {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border-radius: 14px; cursor: pointer;
+    border: 1.5px solid #e2e8f0; background: #fff;
+    font-size: 14px; font-weight: 600; color: #334155;
+    transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
+}
+.opt:hover { border-color: #a5b4fc; transform: translateX(3px); }
+.opt input { appearance: none; -webkit-appearance: none; flex-shrink: 0; width: 20px; height: 20px; border: 2px solid #cbd5e1; border-radius: 6px; display: grid; place-content: center; transition: all .2s; cursor: pointer; }
+.opt input[type="radio"] { border-radius: 50%; }
+.opt input:checked { border-color: transparent; background: var(--smc-grad); }
+.opt input:checked::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 900; }
+.opt.selected, .opt:has(input:checked) {
+    border-color: #6366f1; color: #312e81;
+    background: linear-gradient(135deg, rgba(56,189,248,.08), rgba(99,102,241,.08), rgba(244,63,94,.06));
+    box-shadow: 0 6px 18px rgba(99,102,241,.15);
+}
+
+.sv-select { width: 100%; padding: 15px 16px; border-radius: 14px; border: 1.5px solid #e2e8f0; font-size: 15px; color: #334155; background: #fff; outline: none; transition: border-color .2s, box-shadow .2s; }
+.sv-select:focus { border-color: #6366f1; box-shadow: 0 0 0 4px rgba(99,102,241,.15); }
+
+/* Escala 1 - 5 */
+.sv-scale { display: flex; gap: 10px; margin: 18px 0 10px; }
+.sv-scale label { flex: 1; cursor: pointer; }
+.sv-scale input { position: absolute; opacity: 0; pointer-events: none; }
+.sv-scale span {
+    display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 14px;
+    border: 1.5px solid #e2e8f0; font-size: 18px; font-weight: 800; color: #475569; transition: all .2s;
+}
+.sv-scale label:hover span { border-color: #a5b4fc; transform: translateY(-2px); }
+.sv-scale input:checked + span { color: #fff; border-color: transparent; background: var(--smc-grad); box-shadow: 0 8px 20px rgba(99,102,241,.35); }
+.sv-scale-legend { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #94a3b8; }
+
+/* Mini evaluación */
+.sv-formula { padding: 18px; border-radius: 16px; text-align: center; font-family: Consolas, 'Courier New', monospace; font-size: 22px; font-weight: 700; color: #1e1b4b; background: var(--smc-grad-soft); border: 1px solid rgba(99,102,241,.18); margin: 10px 0 16px; }
+.sv-quiz-meta { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #6366f1; margin-bottom: 8px; }
+.sv-quiz-meta span:last-child { color: #94a3b8; }
+
+/* Resultados */
+.sv-bar { height: 10px; background: #eef2ff; border-radius: 999px; overflow: hidden; }
+.sv-bar > div { height: 100%; background: var(--smc-grad); border-radius: 999px; }
+.sv-metric { font-size: 13px; color: #334155; }
+.sv-metric-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: 600; }
+.sv-score { display: flex; align-items: center; gap: 18px; padding: 18px; border-radius: 18px; background: var(--smc-grad-soft); border: 1px solid rgba(99,102,241,.18); margin-bottom: 14px; }
+.sv-score-num { font-size: 40px; font-weight: 900; background: var(--smc-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sv-score-text { font-size: 13px; color: #475569; line-height: 1.5; }
+.sv-score-text strong { color: #0f172a; }
+.sv-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.sv-kpi { padding: 12px 8px; border-radius: 14px; text-align: center; font-size: 12px; font-weight: 700; }
+.sv-kpi.ok { background: #f0fdf4; color: #166534; }
+.sv-kpi.warn { background: #fffbeb; color: #92400e; }
+.sv-kpi.info { background: #eef2ff; color: #3730a3; }
+.sv-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 16px; border-radius: 14px; border: 1.5px solid #e2e8f0; font-size: 14px; }
+.sv-badge { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 8px; white-space: nowrap; }
+.sv-badge.high { background: #fee2e2; color: #b91c1c; }
+.sv-badge.mid { background: #fef3c7; color: #b45309; }
+.sv-check { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #1e1b4b; }
+.sv-check::before { content: '✓'; flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-content: center; color: #fff; font-size: 12px; font-weight: 900; background: var(--smc-grad); }
+
+/* ---------- Botones de navegación ---------- */
+.sv-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 30px; padding-top: 22px; border-top: 1px solid #f1f5f9; }
+.sv-btn-prev { background: none; border: none; color: #64748b; font-size: 14px; font-weight: 700; cursor: pointer; padding: 10px 14px; border-radius: 999px; transition: color .2s, background .2s; }
+.sv-btn-prev:hover { color: #4338ca; background: #eef2ff; }
+.sv-btn-next {
+    margin-left: auto; border: none; cursor: pointer;
+    background: var(--smc-grad); background-size: 200% 200%;
+    color: #fff; padding: 15px 30px; border-radius: 999px; font-size: 15px; font-weight: 800;
+    box-shadow: 0 10px 26px rgba(99,102,241,.45);
+    transition: transform .2s, box-shadow .2s, background-position .5s;
+}
+.sv-btn-next:hover { transform: translateY(-2px); background-position: 100% 0; box-shadow: 0 14px 32px rgba(244,63,94,.45); }
+
+@media (max-width: 700px) {
+    .sv-head h1 { font-size: 26px; }
+    .sv-step { width: 58px; }
+    .sv-step-label { font-size: 9px; letter-spacing: 0; }
+    .sv-step-dot { width: 34px; height: 34px; font-size: 13px; }
+    .sv-step-line { margin-top: 16px; min-width: 6px; }
+    .sv-card { padding: 70px 22px 26px; border-radius: 22px; }
+    .sv-options.grid { grid-template-columns: 1fr; }
+    .sv-kpis { grid-template-columns: 1fr; }
+}

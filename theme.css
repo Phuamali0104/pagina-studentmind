@@ -1,0 +1,195 @@
+/* =========================================================
+   StudentMind Connect - Tema visual compartido
+   Paleta inspirada en el logo: azul marino profundo, cian neón y rojo/rosa.
+   Se carga en todas las pantallas (excepto los artículos).
+   ========================================================= */
+:root {
+    --smc-navy: #0b1120;
+    --smc-navy-2: #111a33;
+    --smc-blue: #2563eb;
+    --smc-cyan: #38bdf8;
+    --smc-indigo: #6366f1;
+    --smc-pink: #f43f5e;
+    --smc-grad: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #f43f5e 100%);
+    --smc-grad-soft: linear-gradient(135deg, rgba(56,189,248,.12), rgba(99,102,241,.10), rgba(244,63,94,.10));
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background:
+        radial-gradient(circle at 8% 15%, rgba(56,189,248,.10), transparent 40%),
+        radial-gradient(circle at 92% 30%, rgba(244,63,94,.08), transparent 40%),
+        radial-gradient(circle at 50% 100%, rgba(99,102,241,.08), transparent 45%),
+        #f4f7fc;
+    background-attachment: fixed;
+}
+
+/* ---------- Navbar ---------- */
+nav.navbar {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(11, 17, 32, .92);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: none;
+    box-shadow: 0 8px 30px rgba(2, 6, 23, .35);
+    padding: 12px 50px;
+}
+nav.navbar::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    background: var(--smc-grad);
+    background-size: 200% 100%;
+    animation: smcSlide 6s linear infinite;
+}
+@keyframes smcSlide { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
+
+/* Logo con anillo luminoso */
+.navbar .logo-container { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.navbar .logo-container img {
+    display: block;
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 45%;
+    padding: 2px;
+    background: var(--smc-grad);
+    box-shadow: 0 0 0 3px rgba(11,17,32,1), 0 0 18px rgba(56,189,248,.65), 0 0 34px rgba(244,63,94,.35);
+    animation: smcGlow 3.5s ease-in-out infinite;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.navbar .logo-container:hover img { transform: scale(1.12) rotate(-6deg); }
+@keyframes smcGlow {
+    0%, 100% { box-shadow: 0 0 0 3px #0b1120, 0 0 16px rgba(56,189,248,.6), 0 0 30px rgba(244,63,94,.25); }
+    50%      { box-shadow: 0 0 0 3px #0b1120, 0 0 24px rgba(56,189,248,.85), 0 0 46px rgba(244,63,94,.5); }
+}
+.navbar .logo-text {
+    font-size: 22px; font-weight: 800; letter-spacing: -.3px; line-height: 1.1;
+    color: #fff;
+}
+.navbar .logo-text span {
+    display: block;
+    font-size: 13px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+    background: var(--smc-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Enlaces */
+.navbar .nav-links { display: flex; align-items: center; gap: 8px; }
+.navbar .nav-links a {
+    position: relative; text-decoration: none;
+    color: #cbd5e1; font-weight: 600; font-size: 15px;
+    padding: 9px 18px; border-radius: 999px;
+    transition: color .2s, background .2s;
+}
+.navbar .nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
+.navbar .nav-links a.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(56,189,248,.25), rgba(244,63,94,.25));
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+}
+
+/* Botón registro */
+.navbar .btn-register {
+    background: var(--smc-grad); background-size: 200% 200%;
+    color: #fff; padding: 11px 24px; border-radius: 999px;
+    text-decoration: none; font-weight: 700; font-size: 14px;
+    box-shadow: 0 6px 20px rgba(99,102,241,.45);
+    transition: transform .2s, box-shadow .2s, background-position .5s;
+}
+.navbar .btn-register:hover { transform: translateY(-2px); background-position: 100% 0; box-shadow: 0 10px 28px rgba(244,63,94,.45); }
+
+@media (max-width: 900px) {
+    nav.navbar { flex-wrap: wrap; gap: 12px; padding: 12px 20px; justify-content: center; }
+    .navbar .nav-links { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
+}
+
+/* ---------- Banner de cabecera de página ---------- */
+.smc-page-hero {
+    position: relative; overflow: hidden;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(56,189,248,.35), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(244,63,94,.30), transparent 45%),
+        linear-gradient(135deg, #0b1120, #111a33 60%, #1e1b4b);
+    color: #fff; text-align: center;
+    padding: 60px 30px 70px;
+}
+.smc-page-hero h1 { font-size: 40px; font-weight: 900; letter-spacing: -.5px; margin-bottom: 12px; color: #fff; }
+.smc-page-hero p { font-size: 17px; color: #cbd5e1; max-width: 680px; margin: 0 auto; line-height: 1.6; }
+.smc-grad-text { background: var(--smc-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.smc-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 999px; margin-bottom: 18px;
+    font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+    color: #e0f2fe; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+}
+.smc-chip::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--smc-cyan); box-shadow: 0 0 10px var(--smc-cyan); animation: smcBlink 1.6s infinite; }
+@keyframes smcBlink { 50% { opacity: .3; } }
+
+/* ---------- Footer ---------- */
+.smc-footer-site {
+    margin-top: auto;
+    background: linear-gradient(135deg, #0b1120, #111a33);
+    color: #94a3b8; padding: 34px 120px 34px 50px; /* espacio a la derecha para el botón del chat */
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;
+    position: relative;
+}
+.smc-footer-site::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--smc-grad); }
+.smc-footer-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.smc-footer-brand img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; padding: 2px; background: var(--smc-grad); box-shadow: 0 0 18px rgba(56,189,248,.45); }
+.smc-footer-brand strong { color: #fff; font-size: 18px; display: block; }
+.smc-footer-brand small { font-size: 12px; color: #94a3b8; }
+/* Redes sociales */
+.smc-social { display: flex; align-items: center; gap: 14px; }
+.smc-social a {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; text-decoration: none;
+    background: rgba(255,255,255,.07);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), background .25s, box-shadow .25s;
+}
+.smc-social svg { width: 22px; height: 22px; fill: currentColor; }
+.smc-social svg[fill="none"] { fill: none; }
+.smc-social a:hover { transform: translateY(-4px) scale(1.08); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+.smc-social .smc-yt:hover { background: #ff0000; }
+.smc-social .smc-tt:hover { background: #000; box-shadow: -3px 0 0 #25f4ee, 3px 0 0 #fe2c55, 0 10px 24px rgba(0,0,0,.35); }
+.smc-social .smc-ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.smc-social .smc-fb:hover { background: #1877f2; }
+.smc-social-webinar { margin-left: auto; }
+.smc-footer-site p { font-size: 12px; width: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,.08); padding-top: 16px; }
+
+/* ---------- Tarjetas genéricas (presentación, blog, planes) ---------- */
+.section-box, .blog-card, .plan-column {
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.section-box { position: relative; overflow: hidden; border: 1px solid rgba(99,102,241,.12) !important; box-shadow: 0 10px 35px rgba(15,23,42,.06) !important; }
+.section-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--smc-grad); }
+.section-box h2 { border-bottom: none !important; padding-bottom: 0 !important; position: relative; }
+.section-box h2::after { content: ''; display: block; width: 70px; height: 4px; border-radius: 4px; margin-top: 12px; background: var(--smc-grad); }
+.section-box:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgba(99,102,241,.14) !important; }
+
+.mission-vision-card, .value-item, .testimonial-card, .team-member { transition: transform .25s, box-shadow .25s; }
+.mission-vision-card:hover, .value-item:hover, .testimonial-card:hover, .team-member:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+.mission-vision-card { border-left: 4px solid var(--smc-indigo) !important; background: var(--smc-grad-soft) !important; }
+.value-item strong { background: var(--smc-grad); -webkit-background-clip: text; background-clip: text; color: transparent !important; font-size: 16px !important; }
+.member-photo { background: var(--smc-grad) !important; border: 3px solid #fff !important; box-shadow: 0 0 0 3px rgba(99,102,241,.25), 0 8px 18px rgba(99,102,241,.3) !important; }
+.testimonial-author { color: var(--smc-indigo) !important; }
+
+.blog-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,.35) !important; box-shadow: 0 16px 40px rgba(99,102,241,.15) !important; }
+.blog-card .expand-btn { background: var(--smc-grad-soft); }
+.blog-card:hover .expand-btn, .blog-card.expanded .expand-btn { background: var(--smc-grad) !important; color: #fff !important; }
+
+.plan-column:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(15,23,42,.15) !important; }
+.plan-header { position: relative; overflow: hidden; }
+.plan-header::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.25) 50%, transparent 70%); transform: translateX(-100%); transition: transform .7s; }
+.plan-column:hover .plan-header::after { transform: translateX(100%); }
+.col-free .plan-header { background: linear-gradient(135deg, #16a34a, #15803d) !important; }
+.col-smart .plan-header { background: linear-gradient(135deg, #38bdf8, #2563eb) !important; }
+.col-pro .plan-header { background: linear-gradient(135deg, #a855f7, #6366f1) !important; }
+.col-elite .plan-header { background: linear-gradient(135deg, #f43f5e, #b91c1c) !important; }
+
+/* ---------- Animación de aparición ---------- */
+.smc-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.smc-reveal.smc-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .smc-reveal { opacity: 1; transform: none; }
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación del Proyecto - StudentMind Connect</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f7fc; color: #1e1e2f; min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* Navbar principal */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: #ffffff; border-bottom: 1px solid #e2e8f0; width: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .logo-container { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .logo-container img { width: 45px; height: 45px; object-fit: contain; }
+        .logo-text { font-size: 20px; font-weight: bold; color: #0b132b; }
+        .logo-text span { color: #3a86ff; display: block; }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #4a5568; font-weight: 500; font-size: 15px; }
+        .nav-links a.active { color: #2563eb; font-weight: 600; }
+        .btn-register { background: #2563eb; color: white; padding: 10px 22px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 14px; }
+
+        /* Contenedor Principal */
+        .main-container { padding: 50px; max-width: 1200px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 50px; }
+
+        /* Secciones Generales */
+        .section-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .section-box h2 { font-size: 26px; color: #0f172a; font-weight: 800; margin-bottom: 20px; border-bottom: 2px solid #eff6ff; padding-bottom: 10px; }
+        .section-box p { font-size: 16px; color: #475569; line-height: 1.7; margin-bottom: 15px; }
+
+        /* Propósito */
+        .proposito-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+        .mission-vision-card { background: #f8fafc; padding: 25px; border-radius: 12px; border-left: 4px solid #2563eb; }
+        .mission-vision-card h3 { font-size: 18px; color: #0f172a; margin-bottom: 10px; }
+
+        /* Promesa de transformación (Antes / Después) */
+        .transform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 20px; }
+        .transform-card { padding: 25px; border-radius: 12px; }
+        .transform-card.before { background: #fef2f2; border: 1px solid #fecaca; }
+        .transform-card.before h4 { color: #991b1b; }
+        .transform-card.after { background: #f0fdf4; border: 1px solid #bbf7d0; }
+        .transform-card.after h4 { color: #166534; }
+        .transform-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .transform-card p { font-size: 15px; color: #334155; margin: 0; }
+
+        /* Valores */
+        .values-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+        .value-item { background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; }
+        .value-item strong { color: #2563eb; display: block; margin-bottom: 6px; font-size: 15px; }
+        .value-item p { font-size: 14px; margin: 0; color: #475569; }
+
+        /* Equipo / Integrantes (5 fotos) */
+        .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 20px; }
+        .team-member { display: flex; flex-direction: column; align-items: center; text-align: center; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .member-photo { width: 90px; height: 90px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #64748b; margin-bottom: 15px; border: 3px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.08); overflow: hidden; }
+        .member-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .team-member span { font-size: 15px; font-weight: 700; color: #0f172a; }
+
+        /* Video de presentación */
+        .video-wrapper { width: 100%; max-width: 800px; margin: 0 auto; background: #0b132b; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        video { width: 100%; height: auto; display: block; }
+
+        /* Testimonios */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .testimonial-card { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; }
+        .testimonial-card p { font-style: italic; color: #334155; font-size: 14px; margin-bottom: 15px; }
+        .testimonial-author { font-weight: 700; color: #2563eb; font-size: 13px; text-align: right; }
+
+        @media (max-width: 1024px) {
+            .team-grid { grid-template-columns: repeat(3, 1fr); }
+            .proposito-grid, .transform-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .team-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Portada */
+        .pres-hero { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 50px; padding: 70px 8% 80px; color: #fff;
+            background: radial-gradient(circle at 15% 20%, rgba(56,189,248,.30), transparent 45%), radial-gradient(circle at 85% 75%, rgba(244,63,94,.30), transparent 45%), linear-gradient(135deg, #0b1120, #111a33 60%, #1e1b4b); }
+        .pres-hero-text { max-width: 600px; animation: presIn .9s ease-out both; }
+        .pres-hero h1 { font-size: 60px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 18px; }
+        .pres-hero p { font-size: 18px; color: #cbd5e1; line-height: 1.65; margin-bottom: 32px; }
+        .pres-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+        .pres-btn-main { background: linear-gradient(135deg,#38bdf8,#6366f1,#f43f5e); color: #fff; padding: 15px 32px; border-radius: 999px; text-decoration: none; font-weight: 800; box-shadow: 0 10px 30px rgba(99,102,241,.5); transition: transform .2s; }
+        .pres-btn-main:hover { transform: translateY(-3px); }
+        .pres-btn-ghost { color: #fff; padding: 14px 28px; border-radius: 999px; text-decoration: none; font-weight: 700; border: 1px solid rgba(255,255,255,.35); transition: background .2s; }
+        .pres-btn-ghost:hover { background: rgba(255,255,255,.1); }
+        .pres-logo-wrap { position: relative; width: 340px; height: 340px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; animation: presFloat 5s ease-in-out infinite; }
+        .pres-logo { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; box-shadow: 0 0 60px rgba(56,189,248,.45), 0 0 120px rgba(244,63,94,.25); }
+        .pres-logo-ring { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, #38bdf8, #6366f1, #f43f5e, #38bdf8); animation: presSpin 8s linear infinite; filter: blur(2px); }
+        .pres-logo-ring::after { content: ''; position: absolute; inset: 14px; border-radius: 50%; background: #0b1120; }
+        @keyframes presSpin { to { transform: rotate(360deg); } }
+        @keyframes presFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+        @keyframes presIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+        @media (max-width: 900px) { .pres-hero { flex-direction: column-reverse; text-align: center; padding: 50px 24px; } .pres-hero-actions { justify-content: center; } .pres-hero h1 { font-size: 42px; } .pres-logo-wrap { width: 240px; height: 240px; } .pres-logo { width: 210px; height: 210px; } }
+    </style>
+    <link rel="icon" href="LOGO%20TECHNICAL.jpg">
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="presentacion.html" class="logo-container" title="Ir a la página principal">
+            <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect">
+            <div class="logo-text">StudentMind <span>Connect</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Test</a>
+            <a href="blog.html">Blog</a>
+            <a href="webinar.html">Webinar</a>
+            <a href="planes.html">Planes</a>
+        </div>
+        <a href="planes.html" class="btn-register">Regístrate Gratis</a>
+    </nav>
+
+    <!-- Portada con el logo destacado -->
+    <header class="pres-hero">
+        <div class="pres-hero-text">
+            <span class="smc-chip">Proyecto EdTech con IA</span>
+            <h1>StudentMind <span class="smc-grad-text">Connect</span></h1>
+            <p>La red comunitaria y el copiloto inteligente que transforma la vida universitaria: menos estrés, más claridad y mejores resultados.</p>
+            <div class="pres-hero-actions">
+                <a href="encuesta.html" class="pres-btn-main">Hacer el test gratis &rarr;</a>
+                <a href="webinar.html" class="pres-btn-ghost">▶ Ver webinar</a>
+            </div>
+        </div>
+        <div class="pres-logo-wrap">
+            <div class="pres-logo-ring"></div>
+            <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect" class="pres-logo">
+        </div>
+    </header>
+
+    <div class="main-container">
+        
+        <!-- Propósito del proyecto -->
+        <div class="section-box">
+            <h2>Propósito del Trabajo y Qué Hacemos</h2>
+            <p><strong>StudentMind Connect</strong> nace con el firme propósito de revolucionar la experiencia académica en la educación superior. Combatimos de forma directa el aislamiento estudiantil, la desorganización y el agotamiento mental mediante una plataforma integral que fusiona tecnología adaptativa, herramientas inteligentes de diagnóstico y una sólida comunidad de apoyo entre pares.</p>
+            
+            <div class="proposito-grid">
+                <div class="mission-vision-card">
+                    <h3>Misión</h3>
+                    <p>Transformar la experiencia universitaria de los jóvenes reemplazando la sobrecarga y el estrés por claridad y acompañamiento inteligente, conectando a pares en una comunidad solidaria y guiándolos con tecnología adaptativa para aprender con propósito, equilibrio y tranquilidad.</p>
+                </div>
+                <div class="mission-vision-card">
+                    <h3>Visión</h3>
+                    <p>Para 2030, Ser la red comunitaria y el ecosistema inteligente líder en educación superior que transforma la experiencia académica humanizando el aprendizaje y erradicando el aislamiento, donde cada universitario cuenta con un copiloto de IA y una red de pares para alcanzar su máximo potencial profesional con bienestar emocional.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promesa de Transformación -->
+        <div class="section-box">
+            <h2>Promesa de Transformación</h2>
+            <p>La promesa de transformación relaciona la situación inicial del estudiante con los resultados que la plataforma busca facilitar. La comparación visual entre el antes y el después organiza los cambios esperados en el desempeño académico, el manejo del tiempo, el bienestar y la metodología de aprendizaje. Estos resultados se plantean como beneficios esperados que deberán validarse mediante indicadores de uso y percepción.</p>
+            
+            <div class="transform-grid">
+                <div class="transform-card before">
+                    <h4>Escenario Inicial: Más horas, menos resultados</h4>
+                    <p>El estudiante enfrenta estrés, frustración y desorganización. Los vacíos de conocimiento, la dificultad para priorizar y el uso ineficiente del tiempo limitan drásticamente su avance académico y estabilidad emocional.</p>
+                </div>
+                <div class="transform-card after">
+                    <h4>Escenario Esperado: Estudio inteligente, mejores resultados</h4>
+                    <p>La plataforma propone una dinámica caracterizada por mayor claridad, organización milimétrica, seguimiento constante del progreso y un aprendizaje guiado y libre de ansiedad.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valores -->
+        <div class="section-box">
+            <h2>Nuestros Valores</h2>
+            <div class="values-list">
+                <div class="value-item">
+                    <strong>Empatía estudiantil</strong>
+                    <p>Ponemos el bienestar mental y las horas de descanso del estudiante en el centro de cada funcionalidad.</p>
+                </div>
+                <div class="value-item">
+                    <strong>Inteligencia con propósito</strong>
+                    <p>Usamos la IA para simplificar y orientar rutas reales de estudio, no para sobrecargar ni deshumanizar.</p>
+                </div>
+                <div class="value-item">
+                    <strong>Colaboración horizontal</strong>
+                    <p>Creemos en el aprendizaje entre pares: nadie se queda atrás cuando compartimos lo que sabemos.</p>
+                </div>
+                <div class="value-item">
+                    <strong>Empatía y Bienestar</strong>
+                    <p>Respetamos los ritmos, vacíos previos y tiempos disponibles de cada universitario.</p>
+                </div>
+                <div class="value-item">
+                    <strong>Adaptabilidad real</strong>
+                    <p>Garantizar la confiabilidad del contenido y de las asesorías mediante sistemas de validación académica y reputación digital verificada.</p>
+                </div>
+                <div class="value-item">
+                    <strong>Claridad y simplicidad</strong>
+                    <p>Convertimos sílabos complejos y montañas de material en planes de acción digeribles y libres de ansiedad.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integrantes del Equipo (5 fotos) -->
+        <div class="section-box">
+            <h2>Integrantes del Equipo</h2>
+            <p>Conoce al equipo de desarrollo e ingeniería detrás de StudentMind Connect:</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="patrick.png" alt="Patrick Huamali">
+                    </div>
+                    <span>Patrick Huamali</span>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="LOGO TECHNICAL.jpg" alt="Luis Kamahara">
+                    </div>
+                    <span>Luis Kamahara</span>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="patrick.png" alt="Jose Castrejon">
+                    </div>
+                    <span>Jose Castrejon</span>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="patrick.png" alt="Samuel Oblitas">
+                    </div>
+                    <span>Samuel Oblitas</span>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="patrick.png" alt="Felix Cortes">
+                    </div>
+                    <span>Felix Cortes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video de Presentación -->
+        <div class="section-box" style="text-align: center;">
+            <h2>Video de Presentación del Proyecto</h2>
+            <p style="margin-bottom: 25px;">Visualiza la explicación detallada de la arquitectura, propuesta de valor y demostración de la plataforma.</p>
+            
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="presentacion.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos. Asegúrate de incluir el archivo <strong>presentacion.mp4</strong> en la misma carpeta.
+                </video>
+            </div>
+        </div>
+
+        <!-- Testimonios Inventados -->
+        <div class="section-box">
+            <h2>Testimonios de Estudiantes (Simulación)</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"Antes pasaba noches enteras estudiando sin rumbo fijo y con mucha ansiedad. Con el test de diagnóstico y el planificador inteligente de StudentMind Connect ahora sé exactamente qué repasar en la mitad de tiempo."</p>
+                    <div class="testimonial-author">— Andrea M., Ingeniería de Sistemas</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"La comunidad P2P me salvó el ciclo. Encontrar compañeros dispuestos a compartir resúmenes y resolver dudas de cálculo en equipo cambió por completo mi rendimiento universitario."</p>
+                    <div class="testimonial-author">— Diego R., Ciencias Económicas</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"El asistente Lumen te guía paso a paso sin saturarte. Es como tener un tutor personal disponible 24/7 que cuida tus horas de descanso."</p>
+                    <div class="testimonial-author">— Lucía T., Psicología Educativa</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="smc-footer-site">
+        <a href="presentacion.html" class="smc-footer-brand">
+            <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect">
+            <div><strong>StudentMind Connect</strong><small>Tu aliado académico para tu éxito</small></div>
+        </a>
+        <div class="smc-social" aria-label="Síguenos en redes sociales">
+            <a href="https://www.youtube.com/@StudentMindConnect" target="_blank" rel="noopener" class="smc-yt" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg></a>
+            <a href="https://www.tiktok.com/@studentmindconnect" target="_blank" rel="noopener" class="smc-tt" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            <a href="https://www.instagram.com/studentmindconnect/" target="_blank" rel="noopener" class="smc-ig" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595855100485&amp;locale=es_LA" target="_blank" rel="noopener" class="smc-fb" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+        </div>
+        <p>© 2026 StudentMind Connect · Todos los derechos reservados</p>
+    </footer>
+
+    <script src="chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full w-full m-0 p-0 overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentMind Connect - Potencia tu rendimiento universitario con IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Navbar principal (igual al resto del sitio) */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: #ffffff; border-bottom: 1px solid #e2e8f0; width: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.02); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .logo-container { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .logo-container img { width: 45px; height: 45px; object-fit: contain; }
+        .logo-text { font-size: 20px; font-weight: bold; color: #0b132b; line-height: 1.2; }
+        .logo-text span { color: #3a86ff; display: block; }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #4a5568; font-weight: 500; font-size: 15px; }
+        .nav-links a.active { color: #2563eb; font-weight: 600; }
+        .btn-register { background: #2563eb; color: white; padding: 10px 22px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 14px; }
+    </style>
+    <link rel="icon" href="LOGO%20TECHNICAL.jpg">
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body class="h-full w-full bg-slate-100 m-0 p-0 text-slate-800 antialiased flex flex-col justify-between">
+
+    <nav class="navbar">
+        <a href="presentacion.html" class="logo-container" title="Ir a la página principal">
+            <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect">
+            <div class="logo-text">StudentMind <span>Connect</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Test</a>
+            <a href="blog.html">Blog</a>
+            <a href="webinar.html" class="active">Webinar</a>
+            <a href="planes.html">Planes</a>
+        </div>
+        <a href="planes.html" class="btn-register">Regístrate Gratis</a>
+    </nav>
+
+    <!-- Top Red Accent Bar -->
+    <div class="w-full bg-red-600 h-2.5 flex-shrink-0"></div>
+
+    <!-- Main Full Screen Container -->
+    <main class="w-full min-h-screen bg-white shadow-2xl flex flex-col justify-between">
+
+        <!-- Header Section -->
+        <header class="w-full bg-white border-b border-slate-100 px-6 py-4 lg:px-12 flex flex-wrap items-center justify-between gap-4">
+            <!-- Logo area -->
+            <div class="flex items-center gap-3.5">
+                <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect" class="w-16 h-16 rounded-full object-cover p-[3px] bg-gradient-to-br from-sky-400 via-indigo-500 to-rose-500 shadow-[0_0_22px_rgba(56,189,248,.6)]">
+                <div>
+                    <h1 class="font-black text-slate-900 text-xl lg:text-2xl leading-tight tracking-tight">StudentMind Connect</h1>
+                    <p class="text-xs lg:text-sm text-slate-500 font-medium">Tu aliado académico para tu éxito</p>
+                </div>
+            </div>
+
+            <!-- Event Details (Date, Time, Mode, Badge) -->
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center gap-2.5 bg-slate-50 border border-slate-200/80 px-4 py-2.5 rounded-2xl text-xs font-semibold text-slate-700 shadow-sm">
+                    <span class="text-purple-600 text-lg">📅</span>
+                    <div>
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Fecha</p>
+                        <p class="font-bold text-slate-800">Jueves 20 de noviembre de 2026</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 bg-slate-50 border border-slate-200/80 px-4 py-2.5 rounded-2xl text-xs font-semibold text-slate-700 shadow-sm">
+                    <span class="text-purple-600 text-lg">⏰</span>
+                    <div>
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Hora</p>
+                        <p class="font-bold text-slate-800">7:00 p.m. (GMT-5)</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 bg-slate-50 border border-slate-200/80 px-4 py-2.5 rounded-2xl text-xs font-semibold text-slate-700 shadow-sm">
+                    <span class="text-purple-600 text-lg">💻</span>
+                    <div>
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Modalidad</p>
+                        <p class="font-bold text-slate-800">Online en vivo</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-700 to-indigo-700 text-white px-6 py-3 rounded-2xl font-black text-xs tracking-wider shadow-md flex items-center gap-2">
+                    <span>▶</span> ACCESO GRATUITO
+                </div>
+            </div>
+        </header>
+
+        <!-- Core Grid Content Section (Two Columns) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 w-full flex-grow">
+            
+            <!-- Left Column (8 Columns width) -->
+            <div class="lg:col-span-8 p-6 lg:p-12 flex flex-col gap-10 border-r border-slate-100">
+                
+                <!-- Hero Section matching reference composition -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-7 flex flex-col gap-4">
+                        <span class="inline-flex items-center gap-2 bg-purple-100 text-purple-800 text-xs font-black px-3.5 py-1.5 rounded-full w-fit">
+                            <span class="w-2.5 h-2.5 rounded-full bg-purple-600 animate-pulse"></span> EN VIVO CON IA
+                        </span>
+                        
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.1] tracking-tight">
+                            Potencia tu rendimiento universitario <span class="text-purple-700 underline decoration-purple-300 decoration-wavy decoration-2">con IA</span>
+                        </h2>
+
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Descubre cómo StudentMind Connect te ayuda a organizar tu estudio, mejorar tu productividad y alcanzar tus metas académicas con inteligencia artificial aplicada.
+                        </p>
+
+                        <!-- Highlights Row -->
+                        <div class="grid grid-cols-3 gap-3 pt-2">
+                            <div class="flex items-center gap-2 bg-purple-50/70 border border-purple-100 p-3 rounded-2xl text-xs font-bold text-purple-900 shadow-sm">
+                                <span class="text-xl">👨‍🎓</span> Para estudiantes como tú
+                            </div>
+                            <div class="flex items-center gap-2 bg-purple-50/70 border border-purple-100 p-3 rounded-2xl text-xs font-bold text-purple-900 shadow-sm">
+                                <span class="text-xl">📊</span> Contenido basado en evidencia
+                            </div>
+                            <div class="flex items-center gap-2 bg-purple-50/70 border border-purple-100 p-3 rounded-2xl text-xs font-bold text-purple-900 shadow-sm">
+                                <span class="text-xl">🧠</span> Bienestar integral universitario
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Character Illustration Box -->
+                    <div class="md:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-[300px] bg-gradient-to-b from-purple-100/60 to-indigo-50/80 rounded-3xl p-6 border border-purple-100 shadow-md flex flex-col items-center text-center">
+                            <div class="absolute -top-3.5 right-4 bg-purple-600 text-white text-[10px] font-black px-3 py-1 rounded-full shadow">
+                                Inteligencia Artificial 🚀
+                            </div>
+                            <div class="text-6xl mb-3 animate-bounce">🦉✨</div>
+                            <h3 class="font-extrabold text-slate-800 text-sm mb-1">StudentMind Asistente</h3>
+                            <p class="text-xs text-slate-500 mb-4">Tu compañero virtual inteligente para la planificación y éxito académico.</p>
+                            <div class="w-full bg-white p-3.5 rounded-2xl shadow-sm border border-slate-100 text-left">
+                                <div class="flex items-center justify-between text-[11px] font-bold text-purple-700 mb-1.5">
+                                    <span>Mi Diagnóstico IA</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-purple-600 h-full rounded-full w-[95%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: En este encuentro aprenderás -->
+                <div class="bg-slate-50/90 rounded-3xl p-6 lg:p-8 border border-slate-100 shadow-sm">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xs font-black text-purple-600 tracking-widest uppercase mb-1">✦ RUTA DE APRENDIZAJE ✦</h3>
+                        <h3 class="text-xl lg:text-2xl font-black text-slate-900">En este espacio aprenderás:</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center gap-3 hover:shadow-md transition-all">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-700 rounded-2xl flex items-center justify-center text-xl font-black shadow-sm">📊</div>
+                            <p class="text-xs font-bold text-slate-700 leading-snug">Evaluar tu nivel académico con un test de diagnóstico.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center gap-3 hover:shadow-md transition-all">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-700 rounded-2xl flex items-center justify-center text-xl font-black shadow-sm">🗺️</div>
+                            <p class="text-xs font-bold text-slate-700 leading-snug">Crear una ruta de estudio personalizada con IA.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center gap-3 hover:shadow-md transition-all">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-700 rounded-2xl flex items-center justify-center text-xl font-black shadow-sm">⏱️</div>
+                            <p class="text-xs font-bold text-slate-700 leading-snug">Organizar tu tiempo y tus actividades de forma efectiva.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center gap-3 hover:shadow-md transition-all">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-700 rounded-2xl flex items-center justify-center text-xl font-black shadow-sm">🔑</div>
+                            <p class="text-xs font-bold text-slate-700 leading-snug">Conocer las funciones clave de StudentMind Connect.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center gap-3 hover:shadow-md transition-all sm:col-span-2 lg:col-span-1">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-700 rounded-2xl flex items-center justify-center text-xl font-black shadow-sm">💡</div>
+                            <p class="text-xs font-bold text-slate-700 leading-snug">Herramientas prácticas para mejorar tu aprendizaje.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: ¿Te identificas con alguna de estas situaciones? -->
+                <div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl lg:text-2xl font-black text-slate-900">¿Te identificas con alguna de estas situaciones?</h3>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl flex flex-col items-center text-center gap-2.5 shadow-sm">
+                            <span class="text-3xl">😩</span>
+                            <p class="text-xs font-semibold text-slate-700">Te cuesta organizar tu tiempo.</p>
+                        </div>
+                        <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl flex flex-col items-center text-center gap-2.5 shadow-sm">
+                            <span class="text-3xl">📚</span>
+                            <p class="text-xs font-semibold text-slate-700">Se te acumulan las tareas y trabajos.</p>
+                        </div>
+                        <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl flex flex-col items-center text-center gap-2.5 shadow-sm">
+                            <span class="text-3xl">💤</span>
+                            <p class="text-xs font-semibold text-slate-700">Te distraes con facilidad al estudiar.</p>
+                        </div>
+                        <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl flex flex-col items-center text-center gap-2.5 shadow-sm">
+                            <span class="text-3xl">❓</span>
+                            <p class="text-xs font-semibold text-slate-700">No sabes por dónde comenzar a estudiar.</p>
+                        </div>
+                        <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl flex flex-col items-center text-center gap-2.5 shadow-sm col-span-2 sm:col-span-1">
+                            <span class="text-3xl">💻</span>
+                            <p class="text-xs font-semibold text-slate-700">Sientes que no estás rindiendo como esperas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two-column grid: Organizer & Bonus -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Organizer Card -->
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-3xl p-6 lg:p-7 flex flex-col justify-between shadow-sm">
+                        <div>
+                            <h4 class="font-black text-purple-900 text-sm mb-4 flex items-center gap-2">
+                                <span>👥</span> ¿Quién organiza este espacio?
+                            </h4>
+                            <div class="flex items-start gap-4">
+                                <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect" class="w-16 h-16 rounded-full object-cover p-[3px] bg-gradient-to-br from-sky-400 via-indigo-500 to-rose-500 flex-shrink-0 shadow-[0_0_18px_rgba(99,102,241,.5)]">
+                                <div>
+                                    <h5 class="font-black text-slate-900 text-sm mb-1">StudentMind Connect</h5>
+                                    <p class="text-xs text-slate-600 leading-relaxed font-medium">
+                                        Somos un equipo que desarrolla soluciones EdTech con IA, enfocado en apoyar a estudiantes universitarios a mejorar su aprendizaje, organización y bienestar académico.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 mt-6 pt-4 border-t border-slate-200 text-center">
+                            <div class="text-[10px] font-black text-slate-700">🎓 Especialistas EdTech</div>
+                            <div class="text-[10px] font-black text-slate-700">📊 IA Basada en Datos</div>
+                            <div class="text-[10px] font-black text-slate-700">⭐ Estudiantes Líderes</div>
+                        </div>
+                    </div>
+
+                    <!-- Bonus Card -->
+                    <div class="bg-gradient-to-br from-purple-50 to-indigo-50/50 border border-purple-200/80 rounded-3xl p-6 lg:p-7 flex flex-col justify-between shadow-sm">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-black text-purple-900 text-sm flex items-center gap-2">
+                                    <span>🎁</span> BONUS GRATUITOS
+                                </h4>
+                                <span class="text-[10px] bg-purple-200 text-purple-900 px-3 py-1 rounded-full font-black">Incluidos</span>
+                            </div>
+                            <p class="text-xs text-slate-600 mb-4 font-bold">Por participar en esta sesión recibirás:</p>
+                            <ul class="space-y-3 text-xs text-slate-700 font-bold">
+                                <li class="flex items-center gap-2.5">
+                                    <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-black flex-shrink-0">✓</span>
+                                    Test de diagnóstico académico gratuito.
+                                </li>
+                                <li class="flex items-center gap-2.5">
+                                    <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-black flex-shrink-0">✓</span>
+                                    Plantilla de planificación semanal inteligente.
+                                </li>
+                                <li class="flex items-center gap-2.5">
+                                    <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-black flex-shrink-0">✓</span>
+                                    Guía de técnicas de estudio efectivas con IA.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonials Section -->
+                <div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-xs font-black text-purple-600 tracking-widest uppercase mb-1">✦ CASOS DE ÉXITO ✦</h3>
+                        <h3 class="text-xl lg:text-2xl font-black text-slate-900">Lo que dicen otros estudiantes</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="bg-slate-50 border border-slate-200/80 p-6 rounded-3xl relative shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="text-purple-600 text-3xl font-serif mb-1 leading-none">“</div>
+                                <div class="text-amber-400 text-xs mb-3">★★★★★</div>
+                                <p class="text-xs text-slate-600 italic mb-5 leading-relaxed font-medium">"Me ayudó a entender qué estaba afectando mi rendimiento y a organizar mis entregas sin estrés."</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black text-slate-900">Carlos M.</p>
+                                <p class="text-[10px] text-slate-500 font-medium">Estudiante de Ingeniería, 5to Ciclo</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200/80 p-6 rounded-3xl relative shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="text-purple-600 text-3xl font-serif mb-1 leading-none">“</div>
+                                <div class="text-amber-400 text-xs mb-3">★★★★★</div>
+                                <p class="text-xs text-slate-600 italic mb-5 leading-relaxed font-medium">"Las recomendaciones de estudio con IA fueron fáciles de aplicar y mejoré mis notas en pocas semanas."</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black text-slate-900">Lucía P.</p>
+                                <p class="text-[10px] text-slate-500 font-medium">Estudiante de Derecho, 3er Ciclo</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200/80 p-6 rounded-3xl relative shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="text-purple-600 text-3xl font-serif mb-1 leading-none">“</div>
+                                <div class="text-amber-400 text-xs mb-3">★★★★★</div>
+                                <p class="text-xs text-slate-600 italic mb-5 leading-relaxed font-medium">"Una herramienta indispensable para cualquier universitario que quiera optimizar su tiempo."</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black text-slate-900">Mateo R.</p>
+                                <p class="text-[10px] text-slate-500 font-medium">Estudiante de Medicina, 7mo Ciclo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column (4 Columns width - Sticky Form & Why Assist) -->
+            <div class="lg:col-span-4 bg-slate-50/60 p-6 lg:p-8 flex flex-col gap-6 lg:border-l lg:border-slate-100 justify-start">
+                
+                <!-- Registration Box -->
+                <div class="bg-white rounded-3xl p-6 lg:p-8 shadow-xl border border-slate-200/80 sticky top-6">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-black text-slate-900 tracking-tight">Reserva tu lugar</h3>
+                        <p class="text-green-600 font-black text-xl">¡ES GRATIS!</p>
+                    </div>
+
+                    <form id="registroForm" onsubmit="handleRegister(event)" class="space-y-4">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 text-base">👤</span>
+                            <input type="text" placeholder="Nombre completo" required class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold focus:outline-none focus:ring-2 focus:ring-purple-600 focus:bg-white transition-all">
+                        </div>
+
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 text-base">✉️</span>
+                            <input type="email" placeholder="Correo electrónico" required class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold focus:outline-none focus:ring-2 focus:ring-purple-600 focus:bg-white transition-all">
+                        </div>
+
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 text-base">📞</span>
+                            <input type="tel" placeholder="Celular (opcional)" class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold focus:outline-none focus:ring-2 focus:ring-purple-600 focus:bg-white transition-all">
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-black py-4 px-6 rounded-2xl shadow-lg shadow-green-600/25 text-sm transition-all transform active:scale-[0.98] tracking-wide">
+                            QUIERO REGISTRARME
+                        </button>
+                    </form>
+
+                    <!-- Security & Limited Spots -->
+                    <div class="mt-6 space-y-3 pt-5 border-t border-slate-100 text-center">
+                        <p class="text-[11px] text-slate-500 flex items-center justify-center gap-1.5 font-bold">
+                            <span>🔒</span> Tu información está 100% segura y no será compartida.
+                        </p>
+                        <div class="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-xs font-black tracking-wide shadow-sm">
+                            <span>👥</span> CUPOS LIMITADOS
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Assist / Benefits Box -->
+                <div class="bg-white rounded-3xl p-6 lg:p-7 shadow-sm border border-slate-200/80">
+                    <h4 class="font-black text-purple-900 text-sm mb-4">¿Por qué asistir?</h4>
+                    <ul class="space-y-3.5 text-xs text-slate-700 font-bold">
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-black flex-shrink-0">✓</span>
+                            Aprende a tu ritmo con expertos.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-black flex-shrink-0">✓</span>
+                            Potencia tu rendimiento académico.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-black flex-shrink-0">✓</span>
+                            Descubre herramientas innovadoras con IA.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-black flex-shrink-0">✓</span>
+                            Sé parte de la comunidad StudentMind.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Footer Bottom Purple Banner (Exact layout matching second image bottom bar) -->
+        <footer class="w-full bg-[#4a154b] text-white px-6 lg:px-12 py-6 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect" class="w-14 h-14 rounded-full object-cover p-[3px] bg-gradient-to-br from-sky-400 via-indigo-500 to-rose-500 shadow-[0_0_18px_rgba(56,189,248,.6)]">
+                <p class="text-sm lg:text-base font-bold tracking-wide">
+                    Organiza, estudia y alcanza <span class="text-amber-300 font-black">tus metas</span> con la ayuda de la IA.
+                </p>
+            </div>
+            <div class="smc-social smc-social-webinar" aria-label="Síguenos en redes sociales">
+            <a href="https://www.youtube.com/@StudentMindConnect" target="_blank" rel="noopener" class="smc-yt" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg></a>
+            <a href="https://www.tiktok.com/@studentmindconnect" target="_blank" rel="noopener" class="smc-tt" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            <a href="https://www.instagram.com/studentmindconnect/" target="_blank" rel="noopener" class="smc-ig" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595855100485&amp;locale=es_LA" target="_blank" rel="noopener" class="smc-fb" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+        </div>
+            <a href="#registroForm" onclick="document.querySelector('input').focus()" class="bg-[#28a745] hover:bg-green-600 text-white px-8 py-3.5 rounded-full font-black text-xs lg:text-sm tracking-wider shadow-xl transition-all flex items-center gap-2">
+                ¡REGÍSTRATE GRATIS AHORA! <span>→</span>
+            </a>
+        </footer>
+
+    </main>
+
+    <!-- Success Modal Popup -->
+    <div id="successModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl space-y-4 border border-slate-100 animate-in fade-in zoom-in duration-200">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto font-black">✓</div>
+            <h3 class="text-xl font-black text-slate-900">¡Registro Exitoso!</h3>
+            <p class="text-xs text-slate-600 font-medium leading-relaxed">Te has registrado correctamente en <b>StudentMind Connect</b>. Revisa tu correo para acceder a los bonos y detalles de la sesión.</p>
+            <button onclick="closeModal()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-black py-3.5 rounded-2xl text-xs transition-all shadow-md">
+                ¡Entendido!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function handleRegister(e) {
+            e.preventDefault();
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('registroForm').reset();
+        }
+    </script>
+    <script src="chat.js"></script>
+
+</body>
+</html>
