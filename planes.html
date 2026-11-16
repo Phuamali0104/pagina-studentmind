@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planes - StudentMind Connect</title>
+    <title>Planes Premium - StudentMind Connect</title>
+    <meta name="description" content="Planes Premium de StudentMind Connect: mejora tu rendimiento académico con IA y Lumen, tu copiloto de estudio.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f7fc; color: #1e1e2f; min-height: 100vh; display: flex; flex-direction: column; }
@@ -119,6 +120,16 @@
         .tier-price .amt { font-size: 60px; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 30px var(--glow); }
         .tier-price .per { font-size: 14px; color: #94a3b8; align-self: flex-end; margin-bottom: 8px; margin-left: 4px; }
         .tier-price.free .amt { font-size: 50px; }
+        .tier-price.free { margin-bottom: 12px; }
+        .free-limit {
+            display: inline-flex; align-items: center; gap: 6px; margin-bottom: 22px;
+            padding: 6px 14px; border-radius: 999px;
+            font-size: 13px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: #bbf7d0;
+            background: rgba(74,222,128,.12); border: 1px dashed rgba(74,222,128,.6);
+            animation: limitPulse 2s ease-in-out infinite;
+        }
+        .free-limit b { font-size: 18px; color: #fff; }
+        @keyframes limitPulse { 50% { box-shadow: 0 0 0 6px rgba(74,222,128,.12), 0 0 18px rgba(74,222,128,.45); } }
 
         .tier-perks { list-style: none; display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 28px; }
         .tier-perks li {
@@ -184,40 +195,211 @@
     </style>
     <link rel="icon" href="LOGO%20TECHNICAL.jpg">
     <link rel="stylesheet" href="theme.css">
+    <style>
+        /* ===== Página de precios: secciones superior e inferior ===== */
+        :root {
+            --bg: #0b0f19; --card: #121829; --line: rgba(255,255,255,.08);
+            --cyan: #22d3ee; --blue: #3b82f6; --purple: #a855f7; --muted: #94a3b8;
+            --grad: linear-gradient(135deg, #22d3ee, #3b82f6 50%, #a855f7);
+        }
+        body { background: var(--bg); color: #e2e8f0; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .sec { padding: 72px 0; }
+        .sec-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+        .sec-head h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 900; color: #fff; letter-spacing: -.5px; }
+        .sec-head p { color: var(--muted); margin-top: 10px; line-height: 1.6; }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; }
+        .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        @keyframes floatY { 50% { transform: translateY(-12px); } }
+        @keyframes spinR { to { transform: rotate(360deg); } }
+
+        /* Header */
+        .navbar .btn-register { white-space: nowrap; }
+
+        /* Escenario superior (reutiliza .plans-stage) */
+        .plans-stage {
+            background:
+                radial-gradient(circle at 10% 0%, rgba(34,211,238,.18), transparent 40%),
+                radial-gradient(circle at 90% 15%, rgba(168,85,247,.18), transparent 40%),
+                var(--bg);
+            padding: 48px 20px 80px;
+        }
+
+        /* Hero */
+        .hero { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto 44px; display: grid; gap: 32px; align-items: center; }
+        .hero h1 { font-size: clamp(32px, 5.5vw, 58px); font-weight: 900; line-height: 1.05; letter-spacing: -1px; color: #fff; }
+        .hero .lead { color: #cbd5e1; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; margin: 16px 0 28px; max-width: 560px; }
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .stat { padding: 16px; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid var(--line); transition: transform .25s, border-color .25s; }
+        .stat:hover { transform: translateY(-4px); border-color: rgba(34,211,238,.5); }
+        .stat .ico { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; font-size: 20px; background: rgba(34,211,238,.12); margin-bottom: 10px; }
+        .stat strong { display: block; color: #fff; font-size: 14px; }
+        .stat small { color: var(--muted); font-size: 12px; }
+
+        .lumen { position: relative; justify-self: center; width: min(220px, 60vw); order: -1; }
+        .lumen img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 6px rgba(34,211,238,.12), 0 0 70px rgba(59,130,246,.45); animation: floatY 4s ease-in-out infinite; }
+        .lumen-bubble { position: absolute; top: 4%; right: -12%; padding: 10px 14px; border-radius: 16px 16px 16px 4px; background: #fff; color: var(--bg); font-size: 13px; font-weight: 800; box-shadow: 0 10px 25px rgba(0,0,0,.35); animation: floatY 4s ease-in-out infinite reverse; }
+
+        /* Selector de facturación */
+        .billing { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; margin-bottom: 60px; }
+        .switch { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 5px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--line); }
+        .switch button { position: relative; z-index: 1; padding: 10px 24px; border: 0; border-radius: 999px; background: none; color: #cbd5e1; font-size: 14px; font-weight: 700; cursor: pointer; transition: color .3s; }
+        .switch button[aria-pressed="true"] { color: #fff; }
+        .switch .thumb { position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 999px; background: var(--grad); box-shadow: 0 6px 20px rgba(59,130,246,.45); transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+        .switch.annual .thumb { transform: translateX(100%); }
+        .save { padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 800; color: var(--bg); background: linear-gradient(135deg, #4ade80, #22d3ee); box-shadow: 0 0 18px rgba(74,222,128,.45); }
+
+        /* Barra de confianza */
+        .trust { position: relative; z-index: 2; max-width: 1200px; margin: 56px auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .trust div { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+        .trust span { font-size: 18px; }
+
+        /* Funcionalidades */
+        .grid4 { display: grid; gap: 18px; }
+        .feat { padding: 26px; transition: transform .3s, border-color .3s, box-shadow .3s; }
+        .feat:hover { transform: translateY(-6px); border-color: rgba(168,85,247,.5); box-shadow: 0 20px 40px rgba(59,130,246,.15); }
+        .feat .ico { width: 52px; height: 52px; display: grid; place-items: center; margin-bottom: 16px; border-radius: 14px; font-size: 24px; background: var(--grad); box-shadow: 0 8px 20px rgba(59,130,246,.35); }
+        .feat h3 { color: #fff; font-size: 17px; margin-bottom: 8px; }
+        .feat p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+        /* Mockup */
+        .mock { max-width: 980px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: #0e1322; box-shadow: 0 40px 90px rgba(0,0,0,.5), 0 0 0 1px rgba(34,211,238,.08), 0 0 80px rgba(59,130,246,.18); }
+        .mock-bar { display: flex; align-items: center; gap: 7px; padding: 12px 16px; background: #151b2e; border-bottom: 1px solid var(--line); }
+        .mock-bar i { width: 11px; height: 11px; border-radius: 50%; background: #f43f5e; }
+        .mock-bar i:nth-child(2) { background: #facc15; } .mock-bar i:nth-child(3) { background: #4ade80; }
+        .mock-bar span { margin-left: 10px; font-size: 12px; color: var(--muted); }
+        .mock-body { display: grid; }
+        .mock-side { display: none; padding: 20px 14px; border-right: 1px solid var(--line); }
+        .mock-side a { display: flex; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13px; color: var(--muted); text-decoration: none; }
+        .mock-side a.on { background: rgba(34,211,238,.12); color: #fff; }
+        .mock-main { padding: 20px; display: grid; gap: 14px; }
+        .mock-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+        .mock-top small { color: var(--muted); display: block; font-size: 12px; }
+        .mock-top strong { color: #fff; font-size: 18px; }
+        .chip { padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; background: rgba(250,204,21,.12); color: #fde68a; }
+        .mcards { display: grid; gap: 14px; }
+        .mcard { padding: 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
+        .mcard > small { display: block; color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+        .ring { --p: 78; width: 96px; height: 96px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--cyan) calc(var(--p) * 1%), rgba(255,255,255,.08) 0); }
+        .ring span { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; background: var(--card); color: #fff; font-size: 20px; font-weight: 900; }
+        .bars { display: flex; align-items: flex-end; gap: 8px; height: 96px; }
+        .bars i { flex: 1; height: var(--h); border-radius: 6px 6px 2px 2px; background: var(--grad); opacity: .85; transform-origin: bottom; animation: growBar 1.2s cubic-bezier(.2,.9,.3,1.2) both; }
+        @keyframes growBar { from { transform: scaleY(0); } }
+        .pareto ul { list-style: none; display: grid; gap: 10px; }
+        .pareto li { font-size: 12px; color: #cbd5e1; }
+        .pareto li em { display: block; height: 6px; margin-top: 5px; border-radius: 6px; width: var(--w); background: linear-gradient(90deg, var(--purple), var(--cyan)); }
+        .lumen-tip { display: flex; align-items: center; gap: 12px; }
+        .lumen-tip img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .lumen-tip p { font-size: 13px; color: #cbd5e1; line-height: 1.45; }
+
+        /* Prueba social */
+        .proof { display: grid; gap: 18px; align-items: stretch; }
+        .testi { padding: 30px; margin: 0; }
+        .stars { color: #facc15; font-size: 20px; letter-spacing: 3px; margin-bottom: 14px; text-shadow: 0 0 12px rgba(250,204,21,.5); }
+        .testi blockquote { color: #e2e8f0; font-size: 17px; line-height: 1.6; font-style: italic; }
+        .testi figcaption { display: flex; align-items: center; gap: 12px; margin-top: 20px; font-size: 14px; color: var(--muted); }
+        .testi figcaption b { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--grad); color: #fff; }
+        .testi figcaption strong { color: #fff; display: block; }
+        .counter { padding: 30px; display: flex; flex-direction: column; justify-content: center; text-align: center; background: linear-gradient(160deg, rgba(34,211,238,.12), rgba(168,85,247,.12)), var(--card); }
+        .counter strong { font-size: clamp(44px, 6vw, 60px); font-weight: 900; line-height: 1; }
+        .counter p { color: #cbd5e1; margin-top: 10px; }
+        .seal { position: relative; width: 190px; height: 190px; justify-self: center; align-self: center; }
+        .seal svg { width: 100%; height: 100%; animation: spinR 18s linear infinite; }
+        .seal text { fill: var(--cyan); font-size: 12.5px; font-weight: 800; letter-spacing: 2px; }
+        .seal-core { position: absolute; inset: 34px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--grad); box-shadow: 0 0 40px rgba(59,130,246,.5); color: #fff; }
+        .seal-core span { font-size: 34px; }
+        .seal-core small { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* CTA final */
+        .cta { position: relative; overflow: hidden; padding: 56px 24px; border-radius: 28px; text-align: center; background: radial-gradient(circle at 20% 0%, rgba(34,211,238,.3), transparent 50%), radial-gradient(circle at 80% 100%, rgba(168,85,247,.35), transparent 50%), var(--card); border: 1px solid rgba(34,211,238,.25); }
+        .cta img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 18px; box-shadow: 0 0 40px rgba(34,211,238,.5); animation: floatY 4s ease-in-out infinite; }
+        .cta h2 { font-size: clamp(28px, 4.5vw, 44px); font-weight: 900; color: #fff; letter-spacing: -.5px; }
+        .cta p { color: #cbd5e1; margin: 12px auto 30px; max-width: 520px; }
+        .stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+        .store { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 14px; background: #000; border: 1px solid rgba(255,255,255,.25); color: #fff; text-decoration: none; text-align: left; transition: transform .2s, box-shadow .2s, border-color .2s; }
+        .store:hover { transform: translateY(-3px); border-color: var(--cyan); box-shadow: 0 12px 30px rgba(34,211,238,.3); }
+        .store svg { width: 26px; height: 26px; fill: currentColor; }
+        .store small { display: block; font-size: 11px; opacity: .8; }
+        .store strong { font-size: 18px; line-height: 1.1; }
+
+
+        /* ---- Breakpoints (Mobile First) ---- */
+        @media (min-width: 640px) {
+            .stats, .trust { grid-template-columns: repeat(4, 1fr); }
+            .grid4 { grid-template-columns: repeat(2, 1fr); }
+            .mcards { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (min-width: 900px) {
+            .hero { grid-template-columns: 1.4fr .6fr; }
+            .lumen { width: 280px; order: 0; }
+            .mock-body { grid-template-columns: 200px 1fr; }
+            .mock-side { display: block; }
+            .proof { grid-template-columns: 1.5fr 1fr auto; }
+        }
+        @media (min-width: 1000px) { .grid4 { grid-template-columns: repeat(4, 1fr); } }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="presentacion.html" class="logo-container" title="Ir a la página principal">
-            <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect">
-            <div class="logo-text">StudentMind <span>Connect</span></div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Test</a>
-            <a href="blog.html">Blog</a>
-            <a href="webinar.html">Webinar</a>
-            <a href="planes.html" class="active">Planes</a>
-        </div>
-        <a href="planes.html" class="btn-register">Regístrate Gratis</a>
-    </nav>
+    <!-- ================= SECCIÓN SUPERIOR ================= -->
+    <header>
+        <nav class="navbar" aria-label="Principal">
+            <a href="presentacion.html" class="logo-container" title="Ir a la página principal">
+                <img src="LOGO%20TECHNICAL.jpg" alt="Lumen, mascota de StudentMind Connect">
+                <div class="logo-text">StudentMind <span>Connect</span></div>
+            </a>
+            <div class="nav-links">
+                <a href="presentacion.html">Inicio</a>
+                <a href="#herramientas">Herramientas</a>
+                <a href="blog.html">Comunidad</a>
+                <a href="planes.html" class="active" aria-current="page">Precios</a>
+            </div>
+            <a href="#descargar" class="btn-register">Descargar App</a>
+        </nav>
+    </header>
 
-    <section class="plans-stage">
+    <main>
+    <section class="plans-stage" aria-labelledby="hero-title">
         <div class="sparkles" id="sparkles"></div>
 
-        <div class="stage-title">
-            <span class="smc-chip">Elige tu nivel</span>
-            <h1>Sube de <span class="smc-grad-text">nivel</span></h1>
-            <p>Un plan para cada etapa de tu camino académico.</p>
+        <div class="hero">
+            <div>
+                <span class="smc-chip">Impulsado por IA</span>
+                <h1 id="hero-title">Planes Premium <span class="grad-text">StudentMind Connect</span></h1>
+                <p class="lead">Estudia menos horas y rinde más: la IA detecta tus vacíos, prioriza lo que importa y te guía cada día hacia mejores notas.</p>
+                <div class="stats">
+                    <div class="stat"><div class="ico">🧠</div><strong>Diagnóstico</strong><small>Inteligente</small></div>
+                    <div class="stat"><div class="ico">🎯</div><strong>Pareto 80/20</strong><small>Lo esencial primero</small></div>
+                    <div class="stat"><div class="ico">🦉</div><strong>Copiloto</strong><small>Lumen AI</small></div>
+                    <div class="stat"><div class="ico">📈</div><strong>Crecimiento</strong><small>Académico</small></div>
+                </div>
+            </div>
+            <div class="lumen">
+                <img src="LOGO%20TECHNICAL.jpg" alt="Lumen, el búho robótico de StudentMind Connect">
+                <span class="lumen-bubble">¡Hola! Soy Lumen 👋</span>
+            </div>
         </div>
 
+        <div class="billing">
+            <div class="switch" role="group" aria-label="Periodo de facturación">
+                <span class="thumb"></span>
+                <button type="button" data-period="monthly" aria-pressed="true">Mensual</button>
+                <button type="button" data-period="annual" aria-pressed="false">Anual</button>
+            </div>
+            <span class="save">Ahorra hasta 30%</span>
+        </div>
+
+        <!-- ====== INICIO: TARJETAS DE PRECIOS EXISTENTES (no modificar) ====== -->
         <div class="tiers">
             <!-- FREE · Estrella -->
             <article class="tier tier-free">
+                <span class="tier-badge">⏳ Solo 20 días</span>
                 <div class="tier-inner">
                     <div class="tier-icon">
                         <svg viewBox="0 0 24 24" fill="url(#gFree)"><defs><linearGradient id="gFree" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bbf7d0"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 16.9 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
                     </div>
                     <h3>Free</h3>
                     <div class="tier-price free"><span class="amt">Gratis</span></div>
+                    <div class="free-limit"><b>20</b> días de acceso</div>
                     <ul class="tier-perks">
                         <li><b>✦</b>Diagnóstico inicial</li>
                         <li><b>✦</b>Planificador semanal</li>
@@ -284,7 +466,109 @@
                 </div>
             </article>
         </div>
+        <!-- ====== FIN: TARJETAS DE PRECIOS EXISTENTES ====== -->
+
+        <!-- ================= SECCIÓN INFERIOR ================= -->
+        <div class="trust">
+            <div><span>🎁</span>Prueba gratis 14 días</div>
+            <div><span>🔄</span>Cancela cuando quieras</div>
+            <div><span>💬</span>Soporte personalizado</div>
+            <div><span>🔒</span>Pago 100% seguro</div>
+        </div>
     </section>
+
+    <section class="sec" id="herramientas">
+        <div class="wrap">
+            <div class="sec-head smc-reveal">
+                <h2>Todo lo que necesitas para <span class="grad-text">destacar</span></h2>
+                <p>Herramientas diseñadas para la vida universitaria real.</p>
+            </div>
+            <div class="grid4">
+                <article class="card feat smc-reveal"><div class="ico">📅</div><h3>Planificación académica</h3><p>Organiza tu semana según tus horarios, exámenes y energía.</p></article>
+                <article class="card feat smc-reveal"><div class="ico">🤖</div><h3>Recomendaciones con IA</h3><p>Lumen te dice qué estudiar, cuándo y cómo, según tu desempeño.</p></article>
+                <article class="card feat smc-reveal"><div class="ico">🏆</div><h3>Retos grupales</h3><p>Compite con tus amigos, gana logros y mantén tu racha.</p></article>
+                <article class="card feat smc-reveal"><div class="ico">👥</div><h3>Comunidad universitaria</h3><p>Comparte apuntes y resuelve dudas con estudiantes como tú.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec" aria-labelledby="app-title">
+        <div class="wrap">
+            <div class="sec-head smc-reveal">
+                <h2 id="app-title">Tu dashboard de <span class="grad-text">alto rendimiento</span></h2>
+                <p>Progreso, prioridades y consejos de Lumen en una sola vista.</p>
+            </div>
+            <div class="mock smc-reveal" aria-hidden="true">
+                <div class="mock-bar"><i></i><i></i><i></i><span>StudentMind Connect · Dashboard</span></div>
+                <div class="mock-body">
+                    <div class="mock-side">
+                        <a class="on">📊 Dashboard</a><a>📅 Planificador</a><a>🎯 Pareto 80/20</a><a>🦉 Lumen AI</a><a>👥 Comunidad</a>
+                    </div>
+                    <div class="mock-main">
+                        <div class="mock-top">
+                            <div><small>Hola, Andrea 👋</small><strong>Tu semana va excelente</strong></div>
+                            <span class="chip">🔥 7 días de racha</span>
+                        </div>
+                        <div class="mcards">
+                            <div class="mcard"><small>Dominio general</small><div class="ring"><span>78%</span></div></div>
+                            <div class="mcard"><small>Horas de estudio</small>
+                                <div class="bars"><i style="--h:45%"></i><i style="--h:70%"></i><i style="--h:55%"></i><i style="--h:90%"></i><i style="--h:65%"></i><i style="--h:80%"></i><i style="--h:40%"></i></div>
+                            </div>
+                            <div class="mcard pareto"><small>Pareto 80/20 · Prioridades</small>
+                                <ul><li>Cálculo II<em style="--w:88%"></em></li><li>Física I<em style="--w:64%"></em></li><li>Estadística<em style="--w:42%"></em></li></ul>
+                            </div>
+                        </div>
+                        <div class="mcard lumen-tip">
+                            <img src="LOGO%20TECHNICAL.jpg" alt="">
+                            <p><strong>Lumen:</strong> Hoy enfócate en integrales. Es el 20% del temario que define el 80% de tu examen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec" aria-label="Opiniones e impacto">
+        <div class="wrap proof">
+            <figure class="card testi smc-reveal">
+                <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                <blockquote>"Antes pasaba noches enteras estudiando sin rumbo fijo. Con el diagnóstico y el planificador inteligente ahora sé exactamente qué repasar, en la mitad de tiempo."</blockquote>
+                <figcaption><b>A</b><div><strong>Andrea M.</strong>Ingeniería de Sistemas</div></figcaption>
+            </figure>
+            <div class="card counter smc-reveal">
+                <strong class="grad-text">+<span data-count="10000">0</span></strong>
+                <p>estudiantes ya potencian su rendimiento</p>
+            </div>
+            <div class="seal smc-reveal" role="img" aria-label="Sello: recomendado por la comunidad universitaria">
+                <svg viewBox="0 0 200 200">
+                    <defs><path id="sealPath" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs>
+                    <text><textPath href="#sealPath" textLength="505">RECOMENDADO · COMUNIDAD UNIVERSITARIA · CALIDAD ACADÉMICA ·</textPath></text>
+                </svg>
+                <div class="seal-core"><span>🎓</span><small>Recomendado</small></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec" id="descargar">
+        <div class="wrap">
+            <div class="cta smc-reveal">
+                <img src="LOGO%20TECHNICAL.jpg" alt="Lumen">
+                <h2>Lleva a Lumen en tu bolsillo</h2>
+                <p>Empieza gratis hoy. Tu mejor ciclo universitario comienza ahora.</p>
+                <div class="stores">
+                    <a class="store" href="#" aria-label="Descargar en Google Play">
+                        <svg viewBox="0 0 24 24"><path d="M3.6 1.8 13.8 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1Zm11.6 11.6 2.6 2.6L6.6 22.4l8.6-9Zm0-2.8L6.6 1.6 17.8 8l-2.6 2.6Zm4 1.4c.6.4.6 1.6 0 2l-2 1.2-2.8-2.8 2.8-2.8 2 1.2Z"/></svg>
+                        <span><small>Disponible en</small><strong>Google Play</strong></span>
+                    </a>
+                    <a class="store" href="#" aria-label="Descargar en App Store">
+                        <svg viewBox="0 0 24 24"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.77-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-2.99-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.9 1.15 9.15.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.38-.91-2.4-3.67ZM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.09 1.75-.96 2.79 1.02.08 2.05-.52 2.68-1.27Z"/></svg>
+                        <span><small>Descárgalo en</small><strong>App Store</strong></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
 
     <footer class="smc-footer-site">
         <a href="presentacion.html" class="smc-footer-brand">
@@ -303,6 +587,7 @@
     <script>
     (function () {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var ANNUAL_DISCOUNT = 0.30;
 
         /* Destellos de fondo */
         var sp = document.getElementById('sparkles');
@@ -315,24 +600,51 @@
             sp.appendChild(s);
         }
 
-        /* Contador animado de precios */
-        document.querySelectorAll('.amt[data-price]').forEach(function (el) {
-            var target = parseFloat(el.dataset.price);
-            if (reduce) { el.textContent = target.toFixed(2); return; }
-            var t0 = null, dur = 1400;
-            function step(t) {
-                if (!t0) t0 = t;
-                var p = Math.min((t - t0) / dur, 1);
-                var e = 1 - Math.pow(1 - p, 3);
-                el.textContent = (target * e).toFixed(2);
+        /* Animación numérica reutilizable */
+        function fmt(n, dec) { return dec ? n.toFixed(dec) : Math.round(n).toLocaleString('en-US'); }
+        function animateNumber(el, to, dec, dur) {
+            if (reduce) { el.textContent = fmt(to, dec); return; }
+            var from = parseFloat(el.textContent.replace(/,/g, '')) || 0, t0 = null;
+            requestAnimationFrame(function step(t) {
+                t0 = t0 || t;
+                var p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+                el.textContent = fmt(from + (to - from) * e, dec);
                 if (p < 1) requestAnimationFrame(step);
-            }
-            setTimeout(function () { requestAnimationFrame(step); }, 400);
+            });
+        }
+
+        /* Precios: conteo inicial + selector mensual/anual */
+        var prices = document.querySelectorAll('.amt[data-price]');
+        prices.forEach(function (el) { el.dataset.monthly = el.dataset.price; });
+        setTimeout(function () { prices.forEach(function (el) { animateNumber(el, parseFloat(el.dataset.price), 2, 1400); }); }, 400);
+
+        var sw = document.querySelector('.switch');
+        sw.querySelectorAll('button').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var annual = btn.dataset.period === 'annual';
+                sw.classList.toggle('annual', annual);
+                sw.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+                prices.forEach(function (el) {
+                    var v = parseFloat(el.dataset.monthly) * (annual ? 1 - ANNUAL_DISCOUNT : 1);
+                    el.dataset.price = v.toFixed(2);
+                    animateNumber(el, v, 2, 600);
+                    var per = el.parentNode.querySelector('.per');
+                    if (per) per.textContent = annual ? '/mes · anual' : '/mes';
+                });
+            });
         });
 
+        /* Contador de impacto al hacerse visible */
+        var counter = document.querySelector('[data-count]');
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries, obs) {
+                if (entries[0].isIntersecting) { animateNumber(counter, +counter.dataset.count, 0, 1800); obs.disconnect(); }
+            }, { threshold: .5 }).observe(counter);
+        } else { counter.textContent = fmt(+counter.dataset.count, 0); }
+
+        /* Tarjetas: inclinación 3D, foco de luz y selección */
         var cards = document.querySelectorAll('.tier');
         cards.forEach(function (card) {
-            /* Inclinación 3D + foco de luz que sigue al cursor */
             if (!reduce) {
                 card.addEventListener('mousemove', function (e) {
                     var r = card.getBoundingClientRect();
@@ -347,7 +659,6 @@
                     card.style.setProperty('--ry', '0deg');
                 });
             }
-            /* Seleccionar tarjeta */
             card.addEventListener('click', function () {
                 cards.forEach(function (c) { c.classList.remove('is-selected'); });
                 card.classList.add('is-selected');
@@ -357,9 +668,8 @@
         /* Botones: ripple + confeti */
         document.querySelectorAll('.tier-btn').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
-                var r = btn.getBoundingClientRect();
+                var r = btn.getBoundingClientRect(), size = Math.max(r.width, r.height);
                 var rip = document.createElement('span');
-                var size = Math.max(r.width, r.height);
                 rip.className = 'ripple';
                 rip.style.width = rip.style.height = size + 'px';
                 rip.style.left = (e.clientX - r.left - size / 2) + 'px';
@@ -368,9 +678,7 @@
                 setTimeout(function () { rip.remove(); }, 650);
 
                 var st = getComputedStyle(btn.closest('.tier'));
-                var colors = [st.getPropertyValue('--c1').trim(), st.getPropertyValue('--c2').trim(), '#ffffff', '#facc15'];
-                if (!reduce) burst(e.clientX, e.clientY, colors);
-
+                if (!reduce) burst(e.clientX, e.clientY, [st.getPropertyValue('--c1').trim(), st.getPropertyValue('--c2').trim(), '#ffffff', '#facc15']);
                 if (btn.dataset.href) setTimeout(function () { location.href = btn.dataset.href; }, 700);
             });
         });
