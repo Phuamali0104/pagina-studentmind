@@ -120,16 +120,16 @@
         .tier-price .amt { font-size: 60px; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 30px var(--glow); }
         .tier-price .per { font-size: 14px; color: #94a3b8; align-self: flex-end; margin-bottom: 8px; margin-left: 4px; }
         .tier-price.free .amt { font-size: 50px; }
-        .tier-price.free { margin-bottom: 12px; }
-        .free-limit {
+        .tier-price + .trial { margin-top: -12px; }
+        .trial {
             display: inline-flex; align-items: center; gap: 6px; margin-bottom: 22px;
             padding: 6px 14px; border-radius: 999px;
-            font-size: 13px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: #bbf7d0;
-            background: rgba(74,222,128,.12); border: 1px dashed rgba(74,222,128,.6);
-            animation: limitPulse 2s ease-in-out infinite;
+            font-size: 12px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: #fff;
+            background: color-mix(in srgb, var(--c1) 14%, transparent); border: 1px dashed color-mix(in srgb, var(--c1) 70%, transparent);
+            animation: trialPulse 2s ease-in-out infinite;
         }
-        .free-limit b { font-size: 18px; color: #fff; }
-        @keyframes limitPulse { 50% { box-shadow: 0 0 0 6px rgba(74,222,128,.12), 0 0 18px rgba(74,222,128,.45); } }
+        .trial b { font-size: 16px; color: var(--c1); }
+        @keyframes trialPulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--c1) 14%, transparent), 0 0 18px var(--glow); } }
 
         .tier-perks { list-style: none; display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 28px; }
         .tier-perks li {
@@ -348,12 +348,12 @@
                 <div class="logo-text">StudentMind <span>Connect</span></div>
             </a>
             <div class="nav-links">
-                <a href="presentacion.html">Inicio</a>
-                <a href="#herramientas">Herramientas</a>
-                <a href="blog.html">Comunidad</a>
-                <a href="planes.html" class="active" aria-current="page">Precios</a>
+                <a href="index.html">Test</a>
+                <a href="blog.html">Blog</a>
+                <a href="webinar.html">Webinar</a>
+                <a href="planes.html" class="active" aria-current="page">Planes</a>
             </div>
-            <a href="#descargar" class="btn-register">Descargar App</a>
+            <a href="planes.html" class="btn-register">Regístrate Gratis</a>
         </nav>
     </header>
 
@@ -392,14 +392,12 @@
         <div class="tiers">
             <!-- FREE · Estrella -->
             <article class="tier tier-free">
-                <span class="tier-badge">⏳ Solo 20 días</span>
                 <div class="tier-inner">
                     <div class="tier-icon">
                         <svg viewBox="0 0 24 24" fill="url(#gFree)"><defs><linearGradient id="gFree" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bbf7d0"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 16.9 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
                     </div>
                     <h3>Free</h3>
                     <div class="tier-price free"><span class="amt">Gratis</span></div>
-                    <div class="free-limit"><b>20</b> días de acceso</div>
                     <ul class="tier-perks">
                         <li><b>✦</b>Diagnóstico inicial</li>
                         <li><b>✦</b>Planificador semanal</li>
@@ -418,6 +416,7 @@
                     </div>
                     <h3>Smart</h3>
                     <div class="tier-price"><span class="cur">$</span><span class="amt" data-price="3.49">0</span><span class="per">/mes</span></div>
+                    <div class="trial">🎁 <b>20</b> días gratis</div>
                     <ul class="tier-perks">
                         <li><b>⚡</b>Copiloto académico IA</li>
                         <li><b>⚡</b>Planificador adaptativo</li>
@@ -437,6 +436,7 @@
                     </div>
                     <h3>Pro</h3>
                     <div class="tier-price"><span class="cur">$</span><span class="amt" data-price="8.49">0</span><span class="per">/mes</span></div>
+                    <div class="trial">🎁 <b>20</b> días gratis</div>
                     <ul class="tier-perks">
                         <li><b>💎</b>Ruta personalizada</li>
                         <li><b>💎</b>Retos y logros</li>
@@ -456,6 +456,7 @@
                     </div>
                     <h3>Elite</h3>
                     <div class="tier-price"><span class="cur">$</span><span class="amt" data-price="15.49">0</span><span class="per">/mes</span></div>
+                    <div class="trial">🎁 <b>20</b> días gratis</div>
                     <ul class="tier-perks">
                         <li><b>👑</b>Ecosistema integral IA</li>
                         <li><b>👑</b>Predicción de fatiga</li>
@@ -470,7 +471,7 @@
 
         <!-- ================= SECCIÓN INFERIOR ================= -->
         <div class="trust">
-            <div><span>🎁</span>Prueba gratis 14 días</div>
+            <div><span>🎁</span>Prueba Premium gratis 20 días</div>
             <div><span>🔄</span>Cancela cuando quieras</div>
             <div><span>💬</span>Soporte personalizado</div>
             <div><span>🔒</span>Pago 100% seguro</div>
