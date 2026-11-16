@@ -18,41 +18,169 @@
         .nav-links a.active { color: #2563eb; font-weight: 600; }
         .btn-register { background: #2563eb; color: white; padding: 10px 22px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 14px; }
 
-        .main-content { padding: 0 50px 60px; margin-top: -35px !important; position: relative; flex-grow: 1; max-width: 1400px; margin: 0 auto; width: 100%; }
-        .header-title { text-align: center; margin-bottom: 40px; }
-        .header-title h1 { font-size: 34px; color: #0f172a; font-weight: 800; margin-bottom: 10px; }
-        .header-title p { color: #64748b; font-size: 16px; }
+        /* ================= ESCENARIO DE PLANES ================= */
+        @property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 
-        /* Grid de 4 columnas idéntico a tu diagrama */
-        .plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .plan-column { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+        .plans-stage {
+            position: relative; overflow: hidden; flex-grow: 1;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(56,189,248,.28), transparent 40%),
+                radial-gradient(circle at 85% 20%, rgba(244,63,94,.25), transparent 40%),
+                radial-gradient(circle at 50% 110%, rgba(250,204,21,.18), transparent 45%),
+                linear-gradient(160deg, #0b1120, #111a33 55%, #1e1b4b);
+            color: #fff;
+            padding: 70px 40px 90px;
+        }
+        .stage-title { text-align: center; margin-bottom: 60px; position: relative; z-index: 2; }
+        .stage-title h1 { font-size: clamp(34px, 5vw, 56px); font-weight: 900; letter-spacing: -1px; line-height: 1.05; }
+        .stage-title p { color: #94a3b8; font-size: 17px; margin-top: 12px; }
+        .stage-title .smc-chip { margin-bottom: 18px; }
 
-        /* Cabeceras de columnas basadas en los colores de tu imagen */
-        .plan-header { padding: 20px; color: white; text-align: center; }
-        .plan-header h3 { font-size: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
-        .plan-header span { font-size: 13px; opacity: 0.9; font-weight: 500; }
+        /* Destellos flotantes de fondo */
+        .sparkles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+        .sparkles i {
+            position: absolute; width: 4px; height: 4px; border-radius: 50%;
+            background: #fff; box-shadow: 0 0 10px #fff, 0 0 20px rgba(56,189,248,.8);
+            opacity: 0; animation: twinkle var(--d, 4s) ease-in-out infinite; animation-delay: var(--delay, 0s);
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(.4); }
+            50% { opacity: .9; transform: translateY(-30px) scale(1); }
+        }
 
-        .col-free .plan-header { background: #2e7d32; }
-        .col-smart .plan-header { background: #1565c0; }
-        .col-pro .plan-header { background: #6a1b9a; }
-        .col-elite .plan-header { background: #c62828; }
+        .tiers {
+            position: relative; z-index: 2;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px;
+            max-width: 1320px; margin: 0 auto; perspective: 1200px; align-items: center;
+        }
 
-        .plan-stage { background: #f8fafc; padding: 10px; text-align: center; font-size: 12px; font-weight: 700; color: #475569; border-bottom: 1px solid #e2e8f0; }
-        .plan-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
-        
-        .objective-box { background: #f1f5f9; padding: 10px; border-radius: 8px; font-size: 12px; color: #334155; line-height: 1.4; }
-        .objective-box strong { display: block; color: #0f172a; margin-bottom: 2px; }
+        /* ---------- Tarjeta ---------- */
+        .tier {
+            --c1: #22c55e; --c2: #059669; --glow: rgba(34,197,94,.55);
+            --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
+            position: relative; border-radius: 26px; padding: 2px;
+            background: conic-gradient(from var(--ang), var(--c1), transparent 30%, var(--c2), transparent 70%, var(--c1));
+            animation: spinBorder 5s linear infinite, rise .8s cubic-bezier(.2,.9,.3,1.2) both;
+            animation-delay: 0s, calc(var(--i) * 120ms);
+            transform: rotateX(var(--rx)) rotateY(var(--ry));
+            transform-style: preserve-3d;
+            transition: transform .15s ease-out, box-shadow .3s;
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0,0,0,.35);
+        }
+        @keyframes spinBorder { to { --ang: 360deg; } }
+        @keyframes rise { from { opacity: 0; transform: translateY(60px) scale(.9); } to { opacity: 1; transform: none; } }
+        .tier:hover { box-shadow: 0 30px 70px var(--glow); }
 
-        .features-section h4 { font-size: 13px; text-transform: uppercase; color: #64748b; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 4px; }
-        .features-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-        .features-list li { font-size: 12px; color: #334155; line-height: 1.3; display: flex; align-items: flex-start; gap: 6px; }
+        .tier-inner {
+            position: relative; overflow: hidden; height: 100%;
+            border-radius: 24px; padding: 34px 26px 28px; text-align: center;
+            background:
+                radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.14), transparent 45%),
+                linear-gradient(170deg, rgba(23,32,60,.96), rgba(11,17,32,.98));
+            transform: translateZ(20px);
+        }
+        /* Brillo que cruza la tarjeta */
+        .tier-inner::after {
+            content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,.12), transparent);
+            transform: skewX(-20deg); animation: shine 4.5s ease-in-out infinite;
+            animation-delay: calc(var(--i) * .7s); pointer-events: none;
+        }
+        @keyframes shine { 0%, 60% { left: -60%; } 100% { left: 130%; } }
 
-        .pricing-model { border-top: 1px solid #e2e8f0; padding-top: 15px; text-align: center; }
-        .pricing-model span { font-size: 11px; text-transform: uppercase; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px; }
-        .pricing-model p { font-size: 15px; font-weight: 800; color: #0f172a; }
+        /* Icono */
+        .tier-icon {
+            width: 92px; height: 92px; margin: 0 auto 18px; border-radius: 50%;
+            display: grid; place-items: center; position: relative;
+            background: radial-gradient(circle, color-mix(in srgb, var(--c1) 35%, transparent), transparent 70%);
+            animation: float 3.2s ease-in-out infinite; animation-delay: calc(var(--i) * .4s);
+        }
+        .tier-icon::before {
+            content: ''; position: absolute; inset: 6px; border-radius: 50%;
+            border: 2px dashed color-mix(in srgb, var(--c1) 60%, transparent);
+            animation: spin 12s linear infinite;
+        }
+        .tier-icon svg { width: 54px; height: 54px; filter: drop-shadow(0 0 12px var(--glow)); transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
+        .tier:hover .tier-icon svg { transform: scale(1.18) rotate(-8deg); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        @media (max-width: 1100px) { .plans-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 700px) { .plans-grid { grid-template-columns: 1fr; } }
+        .tier h3 {
+            font-size: 15px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase;
+            background: linear-gradient(90deg, var(--c1), #fff, var(--c2)); background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            animation: textFlow 3s linear infinite;
+        }
+        @keyframes textFlow { to { background-position: 200% center; } }
+
+        .tier-price { margin: 14px 0 24px; display: flex; align-items: flex-start; justify-content: center; gap: 2px; line-height: 1; }
+        .tier-price .cur { font-size: 24px; font-weight: 800; margin-top: 8px; color: var(--c1); }
+        .tier-price .amt { font-size: 60px; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 30px var(--glow); }
+        .tier-price .per { font-size: 14px; color: #94a3b8; align-self: flex-end; margin-bottom: 8px; margin-left: 4px; }
+        .tier-price.free .amt { font-size: 50px; }
+
+        .tier-perks { list-style: none; display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 28px; }
+        .tier-perks li {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 14.5px; font-weight: 600; color: #e2e8f0;
+            padding: 10px 12px; border-radius: 12px;
+            background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06);
+            transition: transform .25s, background .25s, border-color .25s;
+        }
+        .tier-perks li:hover { transform: translateX(6px); background: color-mix(in srgb, var(--c1) 18%, transparent); border-color: color-mix(in srgb, var(--c1) 50%, transparent); }
+        .tier-perks li b {
+            flex: 0 0 26px; height: 26px; border-radius: 8px; display: grid; place-items: center;
+            font-size: 13px; color: #0b1120;
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            box-shadow: 0 0 12px var(--glow);
+        }
+
+        .tier-btn {
+            position: relative; overflow: hidden; display: block; width: 100%;
+            padding: 15px; border-radius: 14px; border: none; cursor: pointer;
+            font-size: 15px; font-weight: 800; letter-spacing: .5px; color: #fff; text-decoration: none;
+            background: linear-gradient(135deg, var(--c1), var(--c2)); background-size: 200% 200%;
+            box-shadow: 0 10px 25px var(--glow);
+            transition: transform .2s, box-shadow .2s, background-position .5s;
+        }
+        .tier-btn:hover { transform: translateY(-3px) scale(1.02); background-position: 100% 0; box-shadow: 0 16px 35px var(--glow); }
+        .tier-btn .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,.5); transform: scale(0); animation: ripple .6s ease-out forwards; pointer-events: none; }
+        @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+        /* Seleccionado */
+        .tier.is-selected { box-shadow: 0 0 0 3px var(--c1), 0 30px 80px var(--glow); }
+        .tier.is-selected .tier-btn::before { content: '✓ '; }
+
+        /* Badge */
+        .tier-badge {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%) translateZ(40px); z-index: 5;
+            padding: 6px 16px; border-radius: 999px; white-space: nowrap;
+            font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #0b1120;
+            background: linear-gradient(135deg, var(--c1), var(--c2)); box-shadow: 0 6px 20px var(--glow);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 50% { box-shadow: 0 6px 30px var(--glow), 0 0 0 6px color-mix(in srgb, var(--c1) 25%, transparent); } }
+
+        /* Colores por plan */
+        .tier-free  { --i: 0; --c1: #4ade80; --c2: #059669; --glow: rgba(74,222,128,.45); }
+        .tier-smart { --i: 1; --c1: #38bdf8; --c2: #2563eb; --glow: rgba(56,189,248,.5); }
+        .tier-pro   { --i: 2; --c1: #c084fc; --c2: #6366f1; --glow: rgba(192,132,252,.55); }
+        .tier-elite { --i: 3; --c1: #facc15; --c2: #f43f5e; --glow: rgba(250,204,21,.5); }
+
+        /* Pro y Elite destacan más */
+        .tier-pro, .tier-elite { padding: 3px; }
+        .tier-elite .tier-inner { background:
+            radial-gradient(circle at var(--mx) var(--my), rgba(250,204,21,.18), transparent 45%),
+            radial-gradient(circle at 50% 0%, rgba(250,204,21,.15), transparent 50%),
+            linear-gradient(170deg, rgba(40,28,40,.96), rgba(11,17,32,.98)); }
+        .tier-elite .tier-price .amt { background: linear-gradient(135deg, #fde68a, #facc15, #f43f5e); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 0 18px rgba(250,204,21,.45)); }
+
+        /* Confeti */
+        .confetti { position: fixed; width: 9px; height: 9px; pointer-events: none; z-index: 3000; border-radius: 2px; }
+
+        @media (max-width: 1150px) { .tiers { grid-template-columns: repeat(2, 1fr); gap: 40px 26px; } }
+        @media (max-width: 640px)  { .tiers { grid-template-columns: 1fr; } .plans-stage { padding: 50px 18px 70px; } }
     </style>
     <link rel="icon" href="LOGO%20TECHNICAL.jpg">
     <link rel="stylesheet" href="theme.css">
@@ -72,122 +200,92 @@
         <a href="planes.html" class="btn-register">Regístrate Gratis</a>
     </nav>
 
-    <header class="smc-page-hero">
-        <span class="smc-chip">Elige tu ruta</span>
-        <h1>Evolución de Ecosistema y <span class="smc-grad-text">Planes</span></h1>
-        <p>Conoce las etapas de crecimiento y funcionalidades clave de StudentMind Connect.</p>
-    </header>
+    <section class="plans-stage">
+        <div class="sparkles" id="sparkles"></div>
 
-    <div class="main-content">
-
-        <div class="plans-grid">
-            <!-- FREE -->
-            <div class="plan-column col-free">
-                <div class="plan-header">
-                    <h3>Free</h3>
-                    <span>"Descubre tu Ruta"</span>
-                </div>
-                <div class="plan-stage">MVP (Validación)</div>
-                <div class="plan-body">
-                    <div class="objective-box"><strong>Objetivo:</strong> Captar estudiantes universitarios</div>
-                    <div class="features-section">
-                        <h4>Funcionalidades clave</h4>
-                        <ul class="features-list">
-                            <li>✔️ Registro de estudiante y materias</li>
-                            <li>✔️ Perfil académico y horarios libres</li>
-                            <li>✔️ Diagnóstico inicial de vacíos temáticos</li>
-                            <li>✔️ Semáforo básico de dominio</li>
-                            <li>✔️ Planificador de estudio semanal básico</li>
-                            <li>✔️ Guías y resúmenes clave esenciales</li>
-                            <li>✔️ Tutor de estudio IA & ChatboxIA</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-model">
-                        <span>Modelo de ingresos</span>
-                        <p>Freemium gratis (adquisición)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SMART -->
-            <div class="plan-column col-smart">
-                <div class="plan-header">
-                    <h3>Smart</h3>
-                    <span>"Impulsa tu Progreso"</span>
-                </div>
-                <div class="plan-stage">Producto Inicial (PMF)</div>
-                <div class="plan-body">
-                    <div class="objective-box"><strong>Objetivo:</strong> Generar habitos de estudio constante y retención de usuarios</div>
-                    <div class="features-section">
-                        <h4>Funcionalidades clave</h4>
-                        <ul class="features-list">
-                            <li>✔️ Panel de progreso académico inteligente</li>
-                            <li>✔️ Copiloto académico con IA</li>
-                            <li>✔️ Planificador adaptativo de estudio</li>
-                            <li>✔️ Priorización de temas débiles</li>
-                            <li>✔️ Recomendaciones según desempeño</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-model">
-                        <span>Modelo de ingresos</span>
-                        <p>Suscripción baja $3.49 / mes + publicidad</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PRO -->
-            <div class="plan-column col-pro">
-                <div class="plan-header">
-                    <h3>Pro</h3>
-                    <span>"Crece en Comunidad"</span>
-                </div>
-                <div class="plan-stage">Plataforma en Crecimiento</div>
-                <div class="plan-body">
-                    <div class="objective-box"><strong>Objetivo:</strong> Monetización y activación del ecosistema</div>
-                    <div class="features-section">
-                        <h4>Funcionalidades clave</h4>
-                        <ul class="features-list">
-                            <li>✔️ Radar de conocimiento por tema</li>
-                            <li>✔️ Ruta de aprendizaje personalizada</li>
-                            <li>✔️ Gamificación: metas, retos y logros</li>
-                            <li>✔️ Comunidad colaborativa P2P</li>
-                            <li>✔️ Recomendación del siguiente paso</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-model">
-                        <span>Modelo de ingresos</span>
-                        <p>Suscripción media $8.49 / mes + publicidad + comisión por ventas</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ELITE -->
-            <div class="plan-column col-elite">
-                <div class="plan-header">
-                    <h3>Elite</h3>
-                    <span>"Tu Ecosistema Inteligente"</span>
-                </div>
-                <div class="plan-stage">Ecosistema Inteligente</div>
-                <div class="plan-body">
-                    <div class="objective-box"><strong>Objetivo:</strong> Generar habitos de estudio constante y retención de usuarios</div>
-                    <div class="features-section">
-                        <h4>Funcionalidades clave</h4>
-                        <ul class="features-list">
-                            <li>✔️ Ecosistema integral con IA</li>
-                            <li>✔️ Predicción de sobrecarga y fatiga</li>
-                            <li>✔️ Recomendaciones preventivas</li>
-                            <li>✔️ Integración con campus y calendarios</li>
-                            <li>✔️ Analítica integral de rendimiento</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-model">
-                        <span>Modelo de ingresos</span>
-                        <p>Suscripción alta $15.49 / mes + publicidad + comisión por ventas</p>
-                    </div>
-                </div>
-            </div>
+        <div class="stage-title">
+            <span class="smc-chip">Elige tu nivel</span>
+            <h1>Sube de <span class="smc-grad-text">nivel</span></h1>
+            <p>Un plan para cada etapa de tu camino académico.</p>
         </div>
-    </div>
+
+        <div class="tiers">
+            <!-- FREE · Estrella -->
+            <article class="tier tier-free">
+                <div class="tier-inner">
+                    <div class="tier-icon">
+                        <svg viewBox="0 0 24 24" fill="url(#gFree)"><defs><linearGradient id="gFree" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bbf7d0"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 16.9 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+                    </div>
+                    <h3>Free</h3>
+                    <div class="tier-price free"><span class="amt">Gratis</span></div>
+                    <ul class="tier-perks">
+                        <li><b>✦</b>Diagnóstico inicial</li>
+                        <li><b>✦</b>Planificador semanal</li>
+                        <li><b>✦</b>Guías y resúmenes</li>
+                        <li><b>✦</b>Tutor IA</li>
+                    </ul>
+                    <button class="tier-btn" data-href="index.html">Empezar gratis</button>
+                </div>
+            </article>
+
+            <!-- SMART · Rayo -->
+            <article class="tier tier-smart">
+                <div class="tier-inner">
+                    <div class="tier-icon">
+                        <svg viewBox="0 0 24 24" fill="url(#gSmart)"><defs><linearGradient id="gSmart" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0f2fe"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M13.5 2L4 14h7l-1.5 8L20 10h-7z"/></svg>
+                    </div>
+                    <h3>Smart</h3>
+                    <div class="tier-price"><span class="cur">$</span><span class="amt" data-price="3.49">0</span><span class="per">/mes</span></div>
+                    <ul class="tier-perks">
+                        <li><b>⚡</b>Copiloto académico IA</li>
+                        <li><b>⚡</b>Planificador adaptativo</li>
+                        <li><b>⚡</b>Panel de progreso</li>
+                        <li><b>⚡</b>Refuerzo de temas débiles</li>
+                    </ul>
+                    <button class="tier-btn">Elegir Smart</button>
+                </div>
+            </article>
+
+            <!-- PRO · Diamante -->
+            <article class="tier tier-pro">
+                <span class="tier-badge">★ Más popular</span>
+                <div class="tier-inner">
+                    <div class="tier-icon">
+                        <svg viewBox="0 0 24 24"><defs><linearGradient id="gPro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5d0fe"/><stop offset=".5" stop-color="#c084fc"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><path fill="url(#gPro)" d="M6 3h12l4 6-10 12L2 9z"/><path fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1" stroke-linejoin="round" d="M2 9h20M9 3 7.5 9 12 21l4.5-12L15 3M7.5 9 12 3l4.5 6"/></svg>
+                    </div>
+                    <h3>Pro</h3>
+                    <div class="tier-price"><span class="cur">$</span><span class="amt" data-price="8.49">0</span><span class="per">/mes</span></div>
+                    <ul class="tier-perks">
+                        <li><b>💎</b>Ruta personalizada</li>
+                        <li><b>💎</b>Retos y logros</li>
+                        <li><b>💎</b>Comunidad P2P</li>
+                        <li><b>💎</b>Radar de conocimiento</li>
+                    </ul>
+                    <button class="tier-btn">Elegir Pro</button>
+                </div>
+            </article>
+
+            <!-- ELITE · Corona -->
+            <article class="tier tier-elite">
+                <span class="tier-badge">👑 Máximo nivel</span>
+                <div class="tier-inner">
+                    <div class="tier-icon">
+                        <svg viewBox="0 0 24 24"><defs><linearGradient id="gElite" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset=".5" stop-color="#facc15"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><path fill="url(#gElite)" d="M3 8l4.5 4L12 4l4.5 8L21 8l-2 11H5z"/><rect x="5" y="19.5" width="14" height="2" rx="1" fill="url(#gElite)"/><circle cx="12" cy="4" r="1.6" fill="#f43f5e"/><circle cx="3" cy="8" r="1.4" fill="#f43f5e"/><circle cx="21" cy="8" r="1.4" fill="#f43f5e"/></svg>
+                    </div>
+                    <h3>Elite</h3>
+                    <div class="tier-price"><span class="cur">$</span><span class="amt" data-price="15.49">0</span><span class="per">/mes</span></div>
+                    <ul class="tier-perks">
+                        <li><b>👑</b>Ecosistema integral IA</li>
+                        <li><b>👑</b>Predicción de fatiga</li>
+                        <li><b>👑</b>Sincroniza tu calendario</li>
+                        <li><b>👑</b>Analítica total</li>
+                    </ul>
+                    <button class="tier-btn">Elegir Elite</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <footer class="smc-footer-site">
         <a href="presentacion.html" class="smc-footer-brand">
             <img src="LOGO%20TECHNICAL.jpg" alt="Logo StudentMind Connect">
@@ -202,6 +300,97 @@
         <p>© 2026 StudentMind Connect · Todos los derechos reservados</p>
     </footer>
 
+    <script>
+    (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* Destellos de fondo */
+        var sp = document.getElementById('sparkles');
+        for (var k = 0; k < 45; k++) {
+            var s = document.createElement('i');
+            s.style.left = Math.random() * 100 + '%';
+            s.style.top = Math.random() * 100 + '%';
+            s.style.setProperty('--d', (3 + Math.random() * 4) + 's');
+            s.style.setProperty('--delay', (Math.random() * 5) + 's');
+            sp.appendChild(s);
+        }
+
+        /* Contador animado de precios */
+        document.querySelectorAll('.amt[data-price]').forEach(function (el) {
+            var target = parseFloat(el.dataset.price);
+            if (reduce) { el.textContent = target.toFixed(2); return; }
+            var t0 = null, dur = 1400;
+            function step(t) {
+                if (!t0) t0 = t;
+                var p = Math.min((t - t0) / dur, 1);
+                var e = 1 - Math.pow(1 - p, 3);
+                el.textContent = (target * e).toFixed(2);
+                if (p < 1) requestAnimationFrame(step);
+            }
+            setTimeout(function () { requestAnimationFrame(step); }, 400);
+        });
+
+        var cards = document.querySelectorAll('.tier');
+        cards.forEach(function (card) {
+            /* Inclinación 3D + foco de luz que sigue al cursor */
+            if (!reduce) {
+                card.addEventListener('mousemove', function (e) {
+                    var r = card.getBoundingClientRect();
+                    var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+                    card.style.setProperty('--ry', ((x - .5) * 14) + 'deg');
+                    card.style.setProperty('--rx', ((.5 - y) * 14) + 'deg');
+                    card.style.setProperty('--mx', (x * 100) + '%');
+                    card.style.setProperty('--my', (y * 100) + '%');
+                });
+                card.addEventListener('mouseleave', function () {
+                    card.style.setProperty('--rx', '0deg');
+                    card.style.setProperty('--ry', '0deg');
+                });
+            }
+            /* Seleccionar tarjeta */
+            card.addEventListener('click', function () {
+                cards.forEach(function (c) { c.classList.remove('is-selected'); });
+                card.classList.add('is-selected');
+            });
+        });
+
+        /* Botones: ripple + confeti */
+        document.querySelectorAll('.tier-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                var r = btn.getBoundingClientRect();
+                var rip = document.createElement('span');
+                var size = Math.max(r.width, r.height);
+                rip.className = 'ripple';
+                rip.style.width = rip.style.height = size + 'px';
+                rip.style.left = (e.clientX - r.left - size / 2) + 'px';
+                rip.style.top = (e.clientY - r.top - size / 2) + 'px';
+                btn.appendChild(rip);
+                setTimeout(function () { rip.remove(); }, 650);
+
+                var st = getComputedStyle(btn.closest('.tier'));
+                var colors = [st.getPropertyValue('--c1').trim(), st.getPropertyValue('--c2').trim(), '#ffffff', '#facc15'];
+                if (!reduce) burst(e.clientX, e.clientY, colors);
+
+                if (btn.dataset.href) setTimeout(function () { location.href = btn.dataset.href; }, 700);
+            });
+        });
+
+        function burst(x, y, colors) {
+            for (var i = 0; i < 40; i++) {
+                var c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = x + 'px'; c.style.top = y + 'px';
+                c.style.background = colors[i % colors.length];
+                document.body.appendChild(c);
+                var ang = Math.random() * Math.PI * 2, dist = 80 + Math.random() * 140;
+                c.animate([
+                    { transform: 'translate(0,0) rotate(0)', opacity: 1 },
+                    { transform: 'translate(' + Math.cos(ang) * dist + 'px,' + (Math.sin(ang) * dist + 120) + 'px) rotate(' + (Math.random() * 720) + 'deg)', opacity: 0 }
+                ], { duration: 900 + Math.random() * 500, easing: 'cubic-bezier(.2,.8,.3,1)' }).onfinish = (function (el) { return function () { el.remove(); }; })(c);
+            }
+        }
+    })();
+    </script>
     <script src="chat.js"></script>
 </body>
 </html>
